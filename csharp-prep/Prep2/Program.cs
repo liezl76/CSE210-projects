@@ -14,24 +14,24 @@ class Program
         if(grade >= 90)
         {
             Console.WriteLine("A");
-            Console.WriteLine("Congratulations!, You Passsed");
+            Console.WriteLine("Congratulations!, You Pass.");
         }
         else if (grade >= 80){
 
             Console.WriteLine("B");
-            Console.WriteLine("Congratulations!, You Passsed");
+            Console.WriteLine("Congratulations!, You Pass.");
 
         }
         else if (grade >= 70){
 
             Console.WriteLine("C");
-            Console.WriteLine("Congratulations!, You Passsed");
+            Console.WriteLine("Congratulations!, You Pass.");
 
         }
         else if (grade >= 60){
 
             Console.WriteLine("D");
-            Console.WriteLine("Sorry, You Failed");
+            Console.WriteLine("Sorry, You Failed.");
 
         }
         else if (grade < 60)
