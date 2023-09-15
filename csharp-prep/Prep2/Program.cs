@@ -25,11 +25,13 @@ class Program
         else if (grade >= 70){
 
             Console.WriteLine("C");
+            Console.WriteLine("Congratulations!, You Passsed");
 
         }
         else if (grade >= 60){
 
             Console.WriteLine("D");
+            Console.WriteLine("Sorry, You Failed");
 
         }
         else if (grade < 60)
