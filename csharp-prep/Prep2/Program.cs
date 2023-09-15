@@ -9,20 +9,39 @@ class Program
         Console.Write("Enter grade: ");
         string valueFromUser = Console.ReadLine();
 
-        int x = int.Parse(valueFromUser);
-        int y = 2;
+        int grade = int.Parse(valueFromUser);
 
-        if (A >= 90)
+        if(grade >= 90)
         {
-            Console.WriteLine("Greater");
+            Console.WriteLine("A");
+            Console.WriteLine("Congratulations!, You Passsed");
         }
-        else if (x < y)
-        {
-            Console.WriteLine("Less");
+        else if (grade >= 80){
+
+            Console.WriteLine("B");
+            Console.WriteLine("Congratulations!, You Passsed");
+
+        }
+        else if (grade >= 70){
+
+            Console.WriteLine("C");
+
+        }
+        else if (grade >= 60){
+
+            Console.WriteLine("D");
+
+        }
+        else if (grade < 60)
+        { 
+
+            Console.WriteLine("F");
+            Console.WriteLine("Sorry, You Failed");
+
         }
         else
         {
-            Console.WriteLine("Equal");
+            Console.WriteLine("Sorry, You Failed");
         }
         
     }
