@@ -6,43 +6,43 @@ class Program
     {
         //This is prep 2
         Console.Write("Enter grade: ");
-        string valueFromUser = Console.ReadLine();
+        string answer = Console.ReadLine();
+        int grade = int.Parse(answer);
 
-        int grade = int.Parse(valueFromUser);
+        string letter = "";
 
         if(grade >= 90)
         {
-            Console.WriteLine("A");
-            Console.WriteLine("Congratulations!, You Pass.");
+            letter = "A";
         }
         else if (grade >= 80){
 
-            Console.WriteLine("B");
-            Console.WriteLine("Congratulations!, You Pass.");
+            letter = "B";
 
         }
         else if (grade >= 70){
 
-            Console.WriteLine("C");
-            Console.WriteLine("Congratulations!, You Pass.");
+            letter = "C";
 
         }
         else if (grade >= 60){
 
-            Console.WriteLine("D");
-            Console.WriteLine("Sorry, You Failed.");
-
-        }
-        else if (grade < 60)
-        { 
-
-            Console.WriteLine("F");
-            Console.WriteLine("Sorry, You Failed");
+            letter = "D";
 
         }
         else
         {
-            Console.WriteLine("Sorry, You Failed");
+            letter = "F";
+        }
+        Console.WriteLine($"Your grade is: {letter}");
+        
+        if (grade >= 70)
+        {
+            Console.WriteLine("Congratulation, you passed!");
+        }
+        else
+        {
+            Console.WriteLine("Do your best next time!");
         }
     }
 }
