@@ -12,10 +12,14 @@ class Program
       Random randomGenerator = new Random();
       int magicNumber = randomGenerator.Next(1, 101);
 
-      int guess = -1;
+      int guess = 0;
+      int guesses = 0;
 
       while (guess != magicNumber)
+
       {
+        guesses++;
+
         Console.Write("What is your guess? ");
         guess = int.Parse(Console.ReadLine());
 
@@ -30,7 +34,8 @@ class Program
         else
         {
             Console.WriteLine("You guessed it right!");
-        }
-      }
+            Console.WriteLine("Number of guesses: {0}", guesses);
+        }  
+      } 
     }
 }
