@@ -5,7 +5,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("\nWelcome to my Journal!\n");
+        Journal myJournal = new Journal();
+        
     }
 
 }
