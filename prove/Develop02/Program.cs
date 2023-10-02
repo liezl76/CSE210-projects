@@ -7,7 +7,7 @@ class Program
     {
         Journal myJournal = new Journal();
         myJournal.MenuDisplay();
-        //myJournal.print();
+        //myJournal.DisplayCurrentDateTime();
         Console.ReadLine();
     }
 
