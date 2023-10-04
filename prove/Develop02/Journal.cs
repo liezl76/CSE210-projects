@@ -53,7 +53,7 @@ public class Journal
                        myFile.Close();
                     }
 
-                   StreamWriter sw = new StreamWriter(path);
+                    StreamWriter sw = new StreamWriter(path);
 
                     foreach(Entry ent in entries)
                     {
