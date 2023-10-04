@@ -45,25 +45,27 @@ public class Journal
                     }
                     break;
                 case 3:
-                    string path = @"C:\Users\ICT\Documents\GitHub\CSE210-projects\CSE210-projects\prove\Develop02\Journal.txt";
-                   
-                    if(!File.Exists(path))
-                    {
-                       var myFile =  File.CreateText(path);
-                       myFile.Close();
-                    }
+                    Console.WriteLine("Loading from the file...");
+                    string filename = "journal.txt";
 
-                    StreamWriter sw = new StreamWriter(path);
+                    string[] lines = System.IO.File.ReadAllLines(filename);
 
-                    foreach(Entry ent in entries)
-                    {
-                        sw.WriteLine("Answer: " + ent.getEntry() + " Date: " + ent.getDateTime() + "\n");
-                    }
-                    sw.Close();
+                    foreach (Entry ent in entries)
+                        {
+                            Console.WriteLine("Answer: " + ent.getEntry() + " Date: " + ent.getDateTime());
+                        }
                     break;
-                    
                 case 4:
-                    
+                    Console.WriteLine("Saving the file...");
+                    string file = "journal.txt";
+
+                    using (StreamWriter outputFile = new StreamWriter(file))
+                    {
+                        foreach (Entry ent in entries)
+                        {
+                            outputFile.WriteLine("Answer: " + ent.getEntry() + " Date: " + ent.getDateTime() + "\n");  
+                        }
+                    }
                     break;
 
                 case 5:
