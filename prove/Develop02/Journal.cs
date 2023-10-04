@@ -45,7 +45,7 @@ public class Journal
                     }
                     break;
                 case 3:
-                    string path = @"C:\Users\ICT\Documents\GitHub\CSE210-projects\CSE210-projects\prove\Develop02\Test1.txt";
+                    string path = @"C:\Users\ICT\Documents\GitHub\CSE210-projects\CSE210-projects\prove\Develop02\Journal.txt";
                    
                     if(!File.Exists(path))
                     {
