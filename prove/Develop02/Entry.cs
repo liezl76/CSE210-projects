@@ -1,23 +1,27 @@
 using System;
 using System.Collections.Generic;
 using System.Formats.Asn1;
+using System.Runtime.InteropServices;
 using System.Text;
 
 public class Entry
 {
     public string _entry;
-    public DateTime currentDateTime = DateTime.Now;
+    public DateTime date = DateTime.Now;
 
-    public void EntryDetails()
+    public Entry(string answer)
     {
-        DateTime theCurrentTime = DateTime.Now;
-        string dateText = theCurrentTime.ToShortDateString();
-        Console.ReadLine();
+         this._entry = answer;
     }
 
-    public void setEntry(string answer)
+    public DateTime getDateTime()
     {
-        this._entry = answer;
+       return this.date;
     }
 
+    public string getEntry()
+    {
+        return this._entry;
+    }
+    
 }
