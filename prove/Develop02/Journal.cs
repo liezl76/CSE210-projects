@@ -4,8 +4,8 @@ using System.IO;
 
 public class Journal
 {
-    public List<Entry> entries = new List<Entry>();
-    public string[] questions = {
+    public List<Entry> entries = new List<Entry>(); //make a list entry
+    public string[] questions = { //make a list of random questions to prompt in writing in case 1
         "Who was the most interesting person I interacted with today?",
         "If I had one thing that I could do over today, what would it be?",
         "Who was the best part of the day?",
@@ -13,12 +13,12 @@ public class Journal
         "What was the strongest emotion I felt today?"
     };
 
-    public void MenuDisplay()
+    public void MenuDisplay() //function to display menu
     {
-        bool isRunning = true;
+        bool isRunning = true; //make a loop for menu
         while (isRunning)
         {
-            Console.WriteLine("\nPlease select one of the following: ");
+            Console.WriteLine("\nPlease select one of the following: ");//prompt question what youre going to do
             Console.WriteLine("1. Write");
             Console.WriteLine("2. Display");
             Console.WriteLine("3. Load");
@@ -26,7 +26,7 @@ public class Journal
             Console.WriteLine("5. Quit");
             Console.WriteLine();
             Console.WriteLine("What would you like to do? ");
-            int choice = Int32.Parse(Console.ReadLine());
+            int choice = Int32.Parse(Console.ReadLine());//input choice
 
             switch(choice)
             {
