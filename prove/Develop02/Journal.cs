@@ -4,8 +4,8 @@ using System.IO;
 
 public class Journal
 {
-    private List<Entry> entries = new List<Entry>();
-    private string[] questions = {
+    public List<Entry> entries = new List<Entry>();
+    public string[] questions = {
         "Who was the most interesting person I interacted with today?",
         "Who was the best part of the day?",
         "How did I see the hand ofthe Lord in my life today?",
@@ -41,7 +41,7 @@ public class Journal
                 case 2:
                     foreach(Entry ent in entries)
                     {
-                        Console.WriteLine("Answer: " + ent.getEntry() + " Date: " + ent.getDateTime());
+                        Console.WriteLine("Date: " + ent.getDateTime() + " " + "Answer: " + ent.getEntry());
                     }
                     break;
                 case 3:
@@ -52,7 +52,8 @@ public class Journal
 
                     foreach (Entry ent in entries)
                         {
-                            Console.WriteLine("Answer: " + ent.getEntry() + " Date: " + ent.getDateTime());
+                            Console.WriteLine("Date: " + ent.getDateTime() + " " + "Answer: " + ent.getEntry());
+                            Console.ReadLine();
                         }
                     break;
                 case 4:
@@ -63,19 +64,21 @@ public class Journal
                     {
                         foreach (Entry ent in entries)
                         {
-                            outputFile.WriteLine("Answer: " + ent.getEntry() + " Date: " + ent.getDateTime() + "\n");  
+                            outputFile.WriteLine("Date: " + ent.getDateTime() + " " + "Answer: " + ent.getEntry() + "\n");
                         }
                     }
                     break;
-
                 case 5:
                     isRunning = false;
                     break;
-
                 default:
-                   
+                    
                     break;
             }
         }
+    }
+    public void DisplayWelcomeMessage()
+    {
+        Console.WriteLine("\nWelcome to the program!\n");
     }
 }
