@@ -7,10 +7,10 @@ public class Journal
     public List<Entry> entries = new List<Entry>();
     public string[] questions = {
         "Who was the most interesting person I interacted with today?",
+        "If I had one thing that I could do over today, what would it be?",
         "Who was the best part of the day?",
-        "How did I see the hand ofthe Lord in my life today?",
-        "What was the strongest emotion I felt today?",
-        "If I had one thing that I could do over today, what would it be?"
+        "How did I see the hand of the Lord in my life today?",
+        "What was the strongest emotion I felt today?"
     };
 
     public void MenuDisplay()
