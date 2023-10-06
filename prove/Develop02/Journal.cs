@@ -4,29 +4,29 @@ using System.IO;
 
 public class Journal
 {
-    public List<Entry> entries = new List<Entry>(); //make a list entry
-    public string[] questions = { //make a list of random questions to prompt in writing in case 1
+    private List<Entry> entries = new List<Entry>();
+    private string[] questions = {
         "Who was the most interesting person I interacted with today?",
-        "If I had one thing that I could do over today, what would it be?",
         "Who was the best part of the day?",
-        "How did I see the hand of the Lord in my life today?",
-        "What was the strongest emotion I felt today?"
+        "How did I see the hand ofthe Lord in my life today?",
+        "What was the strongest emotion I felt today?",
+        "If I had one thing that I could do over today, what would it be?"
     };
 
-    public void MenuDisplay() //function to display menu
+    public void MenuDisplay() 
     {
-        bool isRunning = true; //make a loop for menu
+        bool isRunning = true; 
         while (isRunning)
         {
-            Console.WriteLine("\nPlease select one of the following: ");//prompt question what youre going to do
+            Console.WriteLine("\nPlease select one of the following: ");
             Console.WriteLine("1. Write");
             Console.WriteLine("2. Display");
-            Console.WriteLine("3. Load");
-            Console.WriteLine("4. Save");
+            Console.WriteLine("3. Save");
+            Console.WriteLine("4. Load");
             Console.WriteLine("5. Quit");
             Console.WriteLine();
             Console.WriteLine("What would you like to do? ");
-            int choice = Int32.Parse(Console.ReadLine());//input choice
+            int choice = Int32.Parse(Console.ReadLine());
 
             switch(choice)
             {
@@ -38,25 +38,15 @@ public class Journal
                     string answer = Console.ReadLine();
                     entries.Add(new Entry(answer));
                     break;
+
                 case 2:
                     foreach(Entry ent in entries)
                     {
                         Console.WriteLine("Date: " + ent.getDateTime() + " " + ": " + ent.getEntry());
                     }
                     break;
+
                 case 3:
-                    Console.WriteLine("Loading from the file...");
-                    string filename = "journal.txt";
-
-                    string[] lines = System.IO.File.ReadAllLines(filename);
-
-                    foreach (Entry ent in entries)
-                        {
-                            Console.WriteLine("Date: " + ent.getDateTime() + " " + ": " + ent.getEntry());
-                            Console.ReadLine();
-                        }
-                    break;
-                case 4:
                     Console.WriteLine("Saving the file...");
                     string file = "journal.txt";
 
@@ -68,6 +58,21 @@ public class Journal
                         }
                     }
                     break;
+                    
+                case 4:
+                    Console.WriteLine("Reading from the file...");
+                    List<Entry> entry = new List<Entry>();
+                    string filename = "journal.txt";
+
+                    string[] lines = System.IO.File.ReadAllLines(filename);
+
+                    foreach (Entry ent in entries)
+                        {
+                            Console.WriteLine("Date: " + ent.getDateTime() + " " + ": " + ent.getEntry());
+                            Console.ReadLine();
+                        }   
+                    break;
+                    
                 case 5:
                     isRunning = false;
                     break;
@@ -76,9 +81,5 @@ public class Journal
                     break;
             }
         }
-    }
-    public void DisplayWelcomeMessage()
-    {
-        Console.WriteLine("\nWelcome to the program!\n");
     }
 }
