@@ -39,6 +39,7 @@ public class Journal
                     string selected_question = questions[num_question];
                     Console.WriteLine(selected_question);
                     string answer = Console.ReadLine();
+                    entries.Add(new Entry(selected_question));
                     entries.Add(new Entry(answer));
                     break;
 
