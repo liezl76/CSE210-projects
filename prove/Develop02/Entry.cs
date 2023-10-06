@@ -12,12 +12,12 @@ public class Entry
          this._entry = answer;
     }
 
-    public DateTime getDateTime()
+    public DateTime getDateTime()//method to get date
     {
        return this.date;
     }
 
-    public string getEntry()
+    public string getEntry()//method to get answer
     {
         return this._entry;
     }

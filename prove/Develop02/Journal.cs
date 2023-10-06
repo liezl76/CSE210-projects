@@ -45,7 +45,7 @@ public class Journal
                 case 2:
                     foreach(Entry ent in entries)
                     {
-                        Console.WriteLine("Date: " + ent.getDateTime() + " " + ": " + ent.getEntry());
+                        Console.WriteLine("Date: " + ent.getDateTime() + " : " + ent.getEntry());
                     }
                     break;
 
@@ -58,7 +58,7 @@ public class Journal
 
                     foreach (Entry ent in entries)
                         {
-                            Console.WriteLine("Date: " + ent.getDateTime() + " " + ": " + ent.getEntry());
+                            Console.WriteLine("Date: " + ent.getDateTime() + " : " + ent.getEntry());
                             Console.ReadLine();
                         }
                     break;
@@ -71,7 +71,7 @@ public class Journal
                     {
                         foreach (Entry ent in entries)
                         {
-                            outputFile.WriteLine("Date: " + ent.getDateTime() + " " + ": " + ent.getEntry() + "\n");
+                            outputFile.WriteLine("Date: " + ent.getDateTime() + " : " + ent.getEntry() + "\n");
                         }
                     }
                     break;
