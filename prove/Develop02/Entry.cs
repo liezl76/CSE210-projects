@@ -9,17 +9,15 @@ public class Entry
 
     public Entry(string answer)
     {
-         this._entry = answer;
+        this._entry = answer;
     }
 
     public DateTime getDateTime()//method to get date
     {
        return this.date;
     }
-
-    public string getEntry()//method to get answer
+    public string getEntry()//method to get entry
     {
         return this._entry;
     }
-    
 }

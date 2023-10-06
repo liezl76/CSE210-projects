@@ -11,15 +11,17 @@ public class Journal
         "If I had one thing that I could do over today, what would it be?",
         "What was the best part of the day?",
         "How did I see the hand of the Lord in my life today?",
-        "What was the strongest emotion I felt today?"
+        "What was the strongest emotion I felt today?",
+        "Where have you've been today?",
+        "What's the significant things you did today?"
     };
-
+    public string _location = PromptLocation();
     public void MenuDisplay() //function to display menu
     {
-        bool isRunning = true; //make a loop for menu
+        bool isRunning = true; //make a loop by using isRunning variable
         while (isRunning)
         {
-            Console.WriteLine("\nPlease select one of the following: ");//prompt question what youre going to do
+            Console.WriteLine("\nPlease select one of the following: ");//prompt question and make a choice what youre going to do
             Console.WriteLine("1. Write");
             Console.WriteLine("2. Display");
             Console.WriteLine("3. Load");
@@ -29,16 +31,17 @@ public class Journal
             Console.WriteLine("What would you like to do? ");
             int choice = Int32.Parse(Console.ReadLine());//input choice
 
-            switch(choice)
+            switch(choice) // I did use switch coz it simplier 
             {
                 case 1:
                     Random rnd = new Random();
-                    int num_question = rnd.Next(0, 4);
+                    int num_question = rnd.Next(0, 6);
                     string selected_question = _questions[num_question];
                     Console.WriteLine(selected_question);
                     string answer = Console.ReadLine();
                     entries.Add(new Entry(selected_question));
                     entries.Add(new Entry(answer));
+                    entries.Add(new Entry(_location));
                     break;
 
                 case 2:
@@ -96,5 +99,12 @@ public class Journal
                 Console.WriteLine("Date: " + ent.getDateTime() + " : " + ent.getEntry());
                 Console.ReadLine();
             }
+    }
+    public static string PromptLocation()
+    {
+        Console.Write("Location: ");
+        string _location = Console.ReadLine();
+
+        return _location;
     }
 }
