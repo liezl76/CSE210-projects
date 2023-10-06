@@ -6,10 +6,10 @@ using System.IO;
 public class Journal
 {
     public List<Entry> entries = new List<Entry>(); //make a list entry
-    public string[] questions = { //make a list of random questions to prompt in writing in case 1
+    public string[] _questions = { //make a list of random questions to prompt in writing in case 1
         "Who was the most interesting person I interacted with today?",
         "If I had one thing that I could do over today, what would it be?",
-        "Who was the best part of the day?",
+        "What was the best part of the day?",
         "How did I see the hand of the Lord in my life today?",
         "What was the strongest emotion I felt today?"
     };
@@ -34,7 +34,7 @@ public class Journal
                 case 1:
                     Random rnd = new Random();
                     int num_question = rnd.Next(0, 4);
-                    string selected_question = questions[num_question];
+                    string selected_question = _questions[num_question];
                     Console.WriteLine(selected_question);
                     string answer = Console.ReadLine();
                     entries.Add(new Entry(selected_question));
@@ -49,35 +49,17 @@ public class Journal
                     break;
 
                 case 3:
-                    Console.WriteLine("Loading from the file...");
-                    List<Entry> entry = new List<Entry>();
-                    string filename = "journal.txt";
-
-                    string[] lines = System.IO.File.ReadAllLines(filename);
-
-                    foreach (Entry ent in entries)
-                        {
-                            Console.WriteLine("Date: " + ent.getDateTime() + " : " + ent.getEntry());
-                            Console.ReadLine();
-                        }
+                    ReadFromFile();
                     break;
 
                 case 4:
-                    Console.WriteLine("Saving the file...");
-                    string file = "journal.txt";
-
-                    using (StreamWriter outputFile = new StreamWriter(file))
-                    {
-                        foreach (Entry ent in entries)
-                        {
-                            outputFile.WriteLine("Date: " + ent.getDateTime() + " : " + ent.getEntry() + "\n");
-                        }
-                    }
+                    SaveToFile();
                     break;
                     
                 case 5:
                     isRunning = false;
                     break;
+
                 default:
                     Console.WriteLine("Invalid choice. Please try again.");
                     break;
@@ -86,6 +68,33 @@ public class Journal
     }
     public void DisplayWelcomeMessage()
     {
-        Console.WriteLine("\nWelcome to the program!\n");
+        Console.WriteLine("\nWelcome to the program!");
+    }
+    public void SaveToFile()
+    {
+        Console.WriteLine("Saving the file...");
+        string file = "journal.txt";
+
+        using (StreamWriter outputFile = new StreamWriter(file))
+        {
+            foreach (Entry ent in entries)
+            {
+                outputFile.WriteLine("Date: " + ent.getDateTime() + " : " + ent.getEntry());
+            }
+        }
+    }
+    public void ReadFromFile()
+    {
+        Console.WriteLine("Loading from the file...");
+        List<Entry> entry = new List<Entry>();
+        string filename = "journal.txt";
+
+        string[] lines = System.IO.File.ReadAllLines(filename);
+
+            foreach (Entry ent in entries)
+            {
+                Console.WriteLine("Date: " + ent.getDateTime() + " : " + ent.getEntry());
+                Console.ReadLine();
+            }
     }
 }
