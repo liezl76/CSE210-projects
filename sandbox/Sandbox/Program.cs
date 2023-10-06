@@ -1,69 +1,46 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Formats.Asn1;
+using System.Runtime.InteropServices;
+using System.Text;
 
-public class Journal
+public class Entry
 {
-    private List<string> entries = new List<string>();
-    private string[] questions = {
+    
+    public List<Entry> entries = new List<Entry>();
+
+    string[] _questions = {
         "Who was the most interesting person I interacted with today?",
         "Who was the best part of the day?",
         "How did I see the hand of the Lord in my life today?",
         "What was the strongest emotion I felt today?",
         "If I had one thing that I could do over today, what would it be?"
     };
-
-    public void MenuDisplay()
+    
+    public string _entry;
+    public DateTime date = DateTime.Now;
+    
+    public void PromptQuestion(string questions)
+    {        
+        Random rnd = new Random();
+        int num_question = rnd.Next(0, 4);
+        string selected_question = _questions[num_question];
+        Console.WriteLine(selected_question);
+        string answer = Console.ReadLine();
+        entries.Add(new Entry(answer));
+    }
+    public Entry(string answer)
     {
-        bool isRunning = true;
-        while (isRunning)
-        {
-            Console.WriteLine("\nPlease select one of the following: ");
-            Console.WriteLine("1. Write");
-            Console.WriteLine("2. Display");
-            Console.WriteLine("3. Load");
-            Console.WriteLine("4. Save");
-            Console.WriteLine("5. Quit");
-            Console.WriteLine();
-            Console.WriteLine("What would you like to do? ");
-            int choice = Int32.Parse(Console.ReadLine());
+         this._entry = answer;
+    }
 
-            switch(choice)
-            {
-                case 1:
-                    Random rnd = new Random();
-                    int num_question = rnd.Next(0, 4);
-                    string selected_question = questions[num_question];
-                    Console.WriteLine(selected_question);
-                    string answer = Console.ReadLine();
-                    entries.Add(answer);
-                    break;
+    public DateTime getDateTime()
+    {
+       return this.date;
+    }
 
-                case 2:
-                    foreach (string entry in entries)
-                    {
-                        Console.WriteLine(entry);
-                    }
-                    break;
-
-                case 3:
-                    entries.Clear();
-                    string[] loadedLines = File.ReadAllLines("journal.txt");
-                    entries.AddRange(loadedLines);
-                    break;
-
-                case 4:
-                    File.WriteAllLines("journal.txt", entries);
-                    break;
-
-                case 5:
-                    isRunning = false;
-                    break;
-
-                default:
-                    Console.WriteLine("Invalid choice.");
-                    break;
-            }
-        }
+    public string getEntry()
+    {
+        return this._entry;
     }
 }
