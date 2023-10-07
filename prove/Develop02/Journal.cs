@@ -102,6 +102,9 @@ public class Journal
     }
     public static string PromptLocation()
     {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.Clear();
+        Console.BackgroundColor = ConsoleColor.White;
         Console.Write("Location: ");
         string _location = Console.ReadLine();
 
