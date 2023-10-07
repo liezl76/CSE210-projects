@@ -5,7 +5,7 @@ using System.IO;
 
 public class Journal
 {
-    public List<Entry> entries = new List<Entry>(); //make a list entry
+    public List<Entry> entries = new List<Entry>(); //make a list of entries
     public string[] _questions = { //make a list of random questions to prompt in writing in case 1
         "Who was the most interesting person I interacted with today?",
         "If I had one thing that I could do over today, what would it be?",
@@ -41,7 +41,7 @@ public class Journal
                     string answer = Console.ReadLine();
                     entries.Add(new Entry(selected_question));
                     entries.Add(new Entry(answer));
-                    entries.Add(new Entry(_mood));
+                    entries.Add(new Entry(_userMood));
                     break;
 
                 case 2:
