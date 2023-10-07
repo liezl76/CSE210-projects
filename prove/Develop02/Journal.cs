@@ -15,7 +15,7 @@ public class Journal
         "Where have you've been today?",
         "What's the significant things you did today?"
     };
-    public string _location = PromptLocation();
+    public string _userMood = PromptUserMood();
     public void MenuDisplay() //function to display menu
     {
         bool isRunning = true; //make a loop by using isRunning variable
@@ -41,7 +41,7 @@ public class Journal
                     string answer = Console.ReadLine();
                     entries.Add(new Entry(selected_question));
                     entries.Add(new Entry(answer));
-                    entries.Add(new Entry(_location));
+                    entries.Add(new Entry(_mood));
                     break;
 
                 case 2:
@@ -100,14 +100,14 @@ public class Journal
                 Console.ReadLine();
             }
     }
-    public static string PromptLocation()
+    public static string PromptUserMood()
     {
-        Console.ForegroundColor = ConsoleColor.Green;
+        Console.ForegroundColor = ConsoleColor.Black;
         Console.Clear();
         Console.BackgroundColor = ConsoleColor.White;
-        Console.Write("Location: ");
-        string _location = Console.ReadLine();
+        Console.Write("How do yo feel now? ");
+        string _userMood = Console.ReadLine();
 
-        return _location;
+        return _userMood;
     }
 }
