@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
 
 public class Journal
 {
-    public List<Entry> entries = new List<Entry>(); //make a list entry
+    public List<Entry> entries = new List<Entry>(); //make a list of entries
     public string[] _questions = { //make a list of random questions to prompt in writing in case 1
         "Who was the most interesting person I interacted with today?",
         "If I had one thing that I could do over today, what would it be?",
@@ -15,7 +14,7 @@ public class Journal
         "Where have you've been today?",
         "What's the significant things you did today?"
     };
-    public string _location = PromptLocation();
+    public string _userMood = PromptUserMood();
     public void MenuDisplay() //function to display menu
     {
         bool isRunning = true; //make a loop by using isRunning variable
@@ -41,7 +40,7 @@ public class Journal
                     string answer = Console.ReadLine();
                     entries.Add(new Entry(selected_question));
                     entries.Add(new Entry(answer));
-                    entries.Add(new Entry(_location));
+                    entries.Add(new Entry(_userMood));
                     break;
 
                 case 2:
@@ -100,14 +99,14 @@ public class Journal
                 Console.ReadLine();
             }
     }
-    public static string PromptLocation()
+    public static string PromptUserMood()
     {
-        Console.ForegroundColor = ConsoleColor.Green;
+        Console.ForegroundColor = ConsoleColor.Black;
         Console.Clear();
         Console.BackgroundColor = ConsoleColor.White;
-        Console.Write("Location: ");
-        string _location = Console.ReadLine();
+        Console.Write("How do yo feel now? ");
+        string _userMood = Console.ReadLine();
 
-        return _location;
+        return _userMood;
     }
 }
