@@ -4,8 +4,8 @@ using System.Text;
 
 public class Entry
 {
-    public string _entry;
-    public DateTime date = DateTime.Now;
+    private string _entry;
+    private DateTime date = DateTime.Now;
 
     public Entry(string answer)
     {
