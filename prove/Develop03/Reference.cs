@@ -6,6 +6,7 @@ public class Reference
     private int _beginVerse;
     private int _endVerse;
     private string _book;
+    private int _chapter;
 
     public int _BeginVerse
     {
@@ -22,6 +23,11 @@ public class Reference
     {
         get {return _book;}
         set {_book = value;}
+    }
+    public int _Chapter
+    {
+        get {return _chapter;}
+        set {_chapter = value;}
     }
 
 }
