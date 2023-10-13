@@ -8,36 +8,17 @@ public class Reference
     private string _book;
     private int _chapter;
 
-    public int _BeginVerse
+    public Reference()
     {
-        get {return _beginVerse;}
-        set {_beginVerse = value;}
-    }
-
-    public int _EndVerse
-    {
-        get {return _endVerse;}
-        set {_endVerse = value;}
-    }
-    public string _Book
-    {
-        get {return _book;}
-        set {_book = value;}
-    }
-    public int _Chapter
-    {
-        get {return _chapter;}
-        set {_chapter = value;}
+        _book = "Proverbs";
+        _chapter = 3;
+        _beginVerse = 3;
+        _endVerse = 4;
     }
 
     public string GetBook()
     {
-        string book = $"{_book}";
+        string book = $"{_book} {_chapter}:{_beginVerse}-{_endVerse}";
         return book;
-    }
-    public string GetChapterVerseString()
-    {
-        string chapterVerse = $"{_chapter} {_beginVerse}:{_endVerse}";
-        return chapterVerse;
     }
 }
