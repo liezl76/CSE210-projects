@@ -2,11 +2,16 @@ using System;
 
 public class Word
 {
-    private string _words;
+   private string _word;
 
-    public Word(string phrase)
-    {
-        this._words = phrase;
-    }
+   public Word(string phrase)
+   {
+       this._word = phrase;
+   }
+
+   public string getWord()
+   {
+    return this._word;
+   }
 
 }

@@ -30,4 +30,14 @@ public class Reference
         set {_chapter = value;}
     }
 
+    public string GetBook()
+    {
+        string book = $"{_book}";
+        return book;
+    }
+    public string GetChapterVerseString()
+    {
+        string chapterVerse = $"{_chapter} {_beginVerse}:{_endVerse}";
+        return chapterVerse;
+    }
 }
