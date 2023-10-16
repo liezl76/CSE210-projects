@@ -10,15 +10,13 @@ public class Reference
 
     public Reference()
     {
-        _book = "Proverbs";
-        _chapter = 3;
-        _beginVerse = 3;
-        _endVerse = 4;
+        _book = "Philippians";
+        _chapter = 4;
+        _beginVerse = 13;
     }
-
-    public string GetBook()
+    public string GetBookString()
     {
-        string book = $"{_book} {_chapter}:{_beginVerse}-{_endVerse}";
+        string book = $"{_book} {_chapter}:{_beginVerse}";
         return book;
     }
 }
