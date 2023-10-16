@@ -2,16 +2,16 @@ using System;
 
 public class Word
 {
-   private string _word;
+   private string _phrase;
 
-   public Word(string phrase)
+   public Word()
    {
-       this._word = phrase;
+     _phrase = "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him. But let him ask in faith, nothing wavering. For he that wavereth is like a wave of the sea driven with the wind and tosssed.";
    }
-
-   public string getWord()
+   public string GetPhraseString()
    {
-    return this._word;
+       string words = $"{_phrase}";
+       return words;
    }
-
+   
 }
