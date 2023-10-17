@@ -7,30 +7,25 @@ public class Reference
     private int _endVerse;
     private string _book;
     private int _chapter;
+    private int _singleVerse;
 
     public Reference()
     {
         _book = "James";
-        _chapter = 1;
-        _beginVerse = 5;
-        _endVerse = 6;
+        _chapter = 2;
+        _beginVerse = 17;
+        _endVerse = 18;
     }
-    public Reference(string _book, int _chapter, int _beginVerse)
+    public Reference(string book, int chapter, int singleVerse)
     {
-        _book = "Philippians";
-        _chapter = 4;
-        _beginVerse = 13;
+        _book = book;
+        _chapter = chapter;
+        _singleVerse = singleVerse;
     }
 
-    public string GetBookString()
+    public string GetReferenceString()
     {
         string book = $"{_book} {_chapter}:{_beginVerse}-{_endVerse}";
         return book;
     }
-    public string GetBookString1()
-    {
-        string book = $"{_book} {_chapter}:{_beginVerse};
-        return book;
-    }
- 
 }
