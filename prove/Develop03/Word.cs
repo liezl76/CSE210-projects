@@ -17,7 +17,6 @@ public class Word
       string selected_verses = _verses[num_verses];
       return selected_verses;
    }
-   
    public string WordHidden()
    {
       string verses = GenerateVerses();
