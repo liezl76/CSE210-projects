@@ -7,7 +7,7 @@ public class Reference
     private int _endVerse;
     private string _book;
     private int _chapter;
-    private int _singleVerse;
+    private int _verse;
 
     public Reference()
     {
@@ -16,16 +16,16 @@ public class Reference
         _beginVerse = 17;
         _endVerse = 18;
     }
-    public Reference(string book, int chapter, int singleVerse)
+    public Reference(string book, int chapter, int verse)
     {
         _book = book;
         _chapter = chapter;
-        _singleVerse = singleVerse;
+        _verse = verse;
     }
 
     public string GetReferenceString()
     {
-        string book = $"{_book} {_chapter}:{_beginVerse}-{_endVerse}";
-        return book;
+        string reference = $"{_book} {_chapter}:{_verse}";
+        return reference;
     }
 }

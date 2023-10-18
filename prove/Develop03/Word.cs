@@ -29,6 +29,7 @@ public class Word
          new_script.Replace(word, new string('_', word.Length));
          Console.WriteLine(new_script.ToString());
          Console.ReadLine();
+         Console.Clear();
       }
       return new_script.ToString();
    }
