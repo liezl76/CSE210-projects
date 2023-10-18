@@ -22,7 +22,6 @@ public class Reference
         _chapter = chapter;
         _verse = verse;
     }
-
     public string GetReferenceString()
     {
         string reference = $"{_book} {_chapter}:{_beginVerse}-{_endVerse}";
