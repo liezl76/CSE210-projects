@@ -4,29 +4,28 @@ using System.Text;
 
 public class Word
 {
-   private string _phrase; 
+   private string _words = "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him. But let him ask in faith, nothing wavering. For he that wavereth is like a wave of the sea driven with the wind and tosssed.";
    
    public Word()
    {
-      _phrase = "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him. But let him ask in faith, nothing wavering. For he that wavereth is like a wave of the sea driven with the wind and tosssed.";
+      _words = "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him. But let him ask in faith, nothing wavering. For he that wavereth is like a wave of the sea driven with the wind and tosssed.";
+   }
+   public Word(string phrase)
+   {
+      this._words = phrase;
    }
    public string getWord()
    {
-      return this._phrase;
+      return this._words;
    }
-   public string WordHidden()
+   public string wordHidden()
    {
       string _verse = getWord();
       string[] words = _verse.Split();
 
-      StringBuilder new_script = new StringBuilder(_verse);
-      foreach (string word in words)
-      {
-         new_script.Replace(word[..], new string('_', word.Length));
-         Console.WriteLine(new_script.ToString());
-         Console.ReadLine();
-         Console.Clear();
-      }
+      string new_script = _verse.Replace(words[5], "_");
+      Console.WriteLine(new_script.ToString());
+
       return new_script.ToString();
    }
 }

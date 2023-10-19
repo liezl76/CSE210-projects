@@ -10,11 +10,11 @@ class Program
         // Console.WriteLine(r1.GetReferenceVerse2());
 
         //Print WordHidden
-        // Word w2 = new Word();
-        // Console.WriteLine(w2.WordHidden());
-        // Console.WriteLine();
+        Word w1 = new Word();
+        Console.WriteLine(w1.wordHidden());
+        Console.WriteLine();
 
-        Scripture s1 = new Scripture();
-        s1.ScriptureDisplay();
+        // Scripture s1 = new Scripture();
+        // s1.ScriptureDisplay();
     }
 }
