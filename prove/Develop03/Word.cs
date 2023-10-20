@@ -18,14 +18,23 @@ public class Word
    {
       return this._words;
    }
-   public string wordHidden()
+   public string wordIsHidden()
    {
       string _verse = getWord();
       string[] words = _verse.Split();
-
-      string new_script = _verse.Replace(words[5], "_");
+      
+      string new_script = _verse.Replace(words[8], "_");
       Console.WriteLine(new_script.ToString());
+      Console.Clear();
 
+      // StringBuilder new_script = new StringBuilder(_verse);
+      // foreach (string word in words)
+      // {
+      //    new_script.Replace(word, new string('_', word.Length));
+      //    Console.WriteLine(new_script.ToString());
+      //    Console.ReadLine();
+      //    Console.Clear();
+      // }      
       return new_script.ToString();
    }
 }
