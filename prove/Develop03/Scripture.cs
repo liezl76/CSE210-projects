@@ -20,17 +20,22 @@ public class Scripture
     }
     public string IsHidden()
     {
-      string verses = _verses;
-      string[] words = verses.Split();
-      StringBuilder new_script = new StringBuilder(verses);
-      foreach (string word in words)
-      {
-         new_script.Replace(word, new string('_', word.Length));
-         Console.WriteLine(new_script.ToString());
-         Console.ReadLine();
-         Console.Clear();
-      }
-      return new_script.ToString();
+        string verses = _verses;
+        string[] words = verses.Split();
+        StringBuilder new_script = new StringBuilder(verses);
+        foreach (string word in words)
+        {
+            int index = new_script.ToString().IndexOf(word);
+            while (index != -1)
+            {
+                for (int i = 0; i < word.Length; i++)
+                {
+                    new_script[index + i] = '_';
+                }
+                index = new_script.ToString().IndexOf(word, index + word.Length);
+            }
+        }
+        return new_script.ToString();
     }
     public void SaveToFile()
     {
