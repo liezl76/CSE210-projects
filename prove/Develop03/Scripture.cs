@@ -1,34 +1,26 @@
 using System;
 using System.Reflection.Metadata.Ecma335;
+using System.Text;
 
 public class Scripture
 {
-    private List<Scripture> scriptures = new List<Scripture>();
-    public Reference GetReference { get; set; }
-    public Word GetWord { get; set; }
+    List<Scripture> scriptures = new List<Scripture>();
+    private string _reference;
+    private string _verses;
 
     public Scripture()
     {
-        GetReference = new Reference("James", 2, 5, 6);
-        GetWord = new Word("If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him. But let him ask in faith, nothing wavering. For he that wavereth is like a wave of the sea driven with the wind and tosssed.";);
+        _reference = "James 1:5-6";
+        _verses = "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him. But let him ask in faith, nothing wavering. For he that wavereth is like a wave of the sea driven with the wind and tosssed.";
     }
-
-    public void ScriptureDisplay()
+    public string GetScripture()
     {
-        bool isRunning = true;
-        while (isRunning)
-        {
-            Reference r1 = new Reference("James", 2, 5, 6);
-            Console.WriteLine(r1.GetReferenceVerse2());
-
-            Word w1 = new Word();
-            Console.WriteLine(w1.getWord());
-            break;
-        }
+        string scripture = $"{_reference} {_verses}";
+        return scripture;
     }
     public string IsHidden()
     {
-      string verses = GenerateVerses();
+      string verses = _verses;
       string[] words = verses.Split();
       StringBuilder new_script = new StringBuilder(verses);
       foreach (string word in words)
@@ -39,5 +31,18 @@ public class Scripture
          Console.Clear();
       }
       return new_script.ToString();
+    }
+    public void SaveToFile()
+    {
+        Console.WriteLine("Saving the file...");
+        string file = "scripture.txt";
+
+        using (StreamWriter outputFile = new StreamWriter(file))
+        {
+            foreach (Scripture script in scriptures)
+            {
+                outputFile.WriteLine(script.scriptures);
+            }
+        }
     }
 }
