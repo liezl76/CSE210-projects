@@ -50,4 +50,22 @@ public class Scripture
             }
         }
     }
+    public List<(string word, int start, int end)> IndexSplitVerses()
+    {
+        string verses = _verses; // Assuming _verses is defined elsewhere
+        string[] words = verses.Split();
+        List<(string word, int start, int end)> indexedVerses = new List<(string, int, int)>();
+
+        foreach (string word in words)
+        {
+            int index = verses.IndexOf(word);
+            while (index != -1)
+            {
+                indexedVerses.Add((word, index, index + word.Length - 1));
+                index = verses.IndexOf(word, index + word.Length);
+            }
+        }
+        return indexedVerses;
+    }
+
 }

@@ -23,11 +23,11 @@ class Program
         // Console.WriteLine(r1.GetReferenceVerse2());
 
         //Print WordHidden
-        Word w1 = new Word();
-        Console.WriteLine(w1.wordIsHidden());
-        Console.WriteLine();
+        // Word w1 = new Word();
+        // Console.WriteLine(w1.wordIsHidden());
+        // Console.WriteLine();
 
-        // Scripture s1 = new Scripture();
-        // Console.WriteLine(s1.GetScripture());
+        Scripture s1 = new Scripture();
+        Console.WriteLine(s1.IndexSplitVerses());
     }
 }
