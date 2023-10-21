@@ -11,9 +11,11 @@ class Program
             Reference r1 = new Reference("James", 2, 5, 6);
             Console.WriteLine(r1.GetReferenceVerse2());
 
+            //Hides verses
             Word w1 = new Word();
-            Console.WriteLine(w1.getWord());
-            break;
+            Console.WriteLine(w1.wordIsHidden());
+            Console.WriteLine();
+            break; 
         }
     }
     static void Main(string[] args)
@@ -22,10 +24,5 @@ class Program
         Program scriptureMemorizer = new Program();
         scriptureMemorizer.ScriptureDisplay();
         Console.ReadLine();
-
-        //Hides verses
-        Word w1 = new Word();
-        Console.WriteLine(w1.wordIsHidden());
-        Console.WriteLine();
     }
 }
