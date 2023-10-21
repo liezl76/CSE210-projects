@@ -4,18 +4,17 @@ using System.Text;
 
 public class Scripture
 {
-    List<Scripture> scriptures = new List<Scripture>();
-    private string _reference;
+    List<Scripture> scriptures = new List<Scripture>(); // Make list of scriptures
+    private string GetReferenceVerse2;
     private string _verses;
-
     public Scripture()
     {
-        _reference = "James 1:5-6";
+        GetReferenceVerse2 = "James 1:5-6";
         _verses = "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him. But let him ask in faith, nothing wavering. For he that wavereth is like a wave of the sea driven with the wind and tosssed.";
     }
     public string GetScripture()
     {
-        string scripture = $"{_reference} {_verses}";
+        string scripture = $"{GetReferenceVerse2} {_verses}";
         return scripture;
     }
     public string IsHidden()
@@ -50,22 +49,4 @@ public class Scripture
             }
         }
     }
-    public List<(string word, int start, int end)> IndexSplitVerses()
-    {
-        string verses = _verses; // Assuming _verses is defined elsewhere
-        string[] words = verses.Split();
-        List<(string word, int start, int end)> indexedVerses = new List<(string, int, int)>();
-
-        foreach (string word in words)
-        {
-            int index = verses.IndexOf(word);
-            while (index != -1)
-            {
-                indexedVerses.Add((word, index, index + word.Length - 1));
-                index = verses.IndexOf(word, index + word.Length);
-            }
-        }
-        return indexedVerses;
-    }
-
 }

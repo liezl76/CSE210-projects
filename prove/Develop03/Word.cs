@@ -17,7 +17,7 @@ public class Word
    {
       return this._words;
    }
-   public string wordIsHidden()
+   public string wordIsHidden()// hides word in verses
    {
       string _verse = getWord();
       string[] words = _verse.Split();
