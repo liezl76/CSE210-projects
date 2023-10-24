@@ -1,15 +1,37 @@
 using System;
 
 class Program
+
 {
     static void Main(string[] args)
     {
-        string phrase = "The quick brown fox jumps over the lazy dog.";
-        string[] words = phrase.Split(' ');
+        Console.WriteLine("Hello Develop04 World!");
 
-        foreach (var word in words)
+        // for (int i = 5; i > 0; i--)
+        // {
+        //     Console.Write(i);
+        //     Thread.Sleep(1000);
+        //     Console.Write("\b \b");
+        // }
+
+        // 
+        List<string> animationStrings = new List<string>();
+        animationStrings.Add("|");
+        animationStrings.Add("/");
+        animationStrings.Add("-");
+        animationStrings.Add("\\");
+        animationStrings.Add("|");
+        animationStrings.Add("/");
+        animationStrings.Add("-");
+        animationStrings.Add("\\");
+
+        foreach (string s in animationStrings)
         {
-            System.Console.WriteLine($"<{word}>");
+            Console.Write(s);
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
         }
+        
+        Console.WriteLine("Done.");
     }
 }
