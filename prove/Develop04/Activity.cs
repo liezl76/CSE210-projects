@@ -4,41 +4,51 @@ using System.Runtime.CompilerServices;
 
 public class Activity
 {
-    private List<Activity> activities = new List<Activity>();
-    public void ActivityMenuDisplay()
+    private string _description;
+    private string _activityName;
+    private string _startingMessage;
+    private string _endingMessage;
+
+
+    public Activity(string description, string activityName, string startingMessage, string endingMessage)
     {
-        bool isRunning = true;
-        while (isRunning)
-        {
-            Console.WriteLine("\nMenu Options:");
-            Console.WriteLine("Start breathing activity");
-            Console.WriteLine("Start reflecting activity");
-            Console.WriteLine("Start listing activity");
-            Console.WriteLine("Quit");
-            Console.WriteLine();
-            Console.WriteLine("Select a choice from the menu: ");
-            int choice = Int32.Parse(Console.ReadLine());
-
-            switch(choice)
-            {
-                case 1:
-                break;
-
-                case 2:
-                break;
-
-                case 3:
-                break;
-
-                case 4:
-                    isRunning = false;
-                    break;
-            }
-        }
+        _description = description;
+        _activityName = activityName;
+        _startingMessage = startingMessage;
+        _endingMessage = endingMessage;
     }
-    public void DisplayWelcomeMessage()
+    public string GetActivity()
     {
-        Console.WriteLine("\nWelcome to the Program!");
+        string activity = $"{_activityName}";
+        return activity;
+    }
+
+    public string GetDescription()
+    {
+        string description = $"{_description}";
+        return description;
+    }
+    
+    public string DisplayStartingMessage()
+    {
+        string startmessage = $"{_startingMessage}";
+        return startmessage;
+    }
+
+    public string DisplayEndingMessage()
+    {
+        string endmessage = $"{_endingMessage}";
+        return endmessage;
+    }
+
+    public void ShowSpinner()
+    {
+
+    }
+
+    public void ShowCountdownTimer()
+    {
+
     }
 
 }
