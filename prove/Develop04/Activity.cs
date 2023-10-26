@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.Design;
 using System.Runtime.CompilerServices;
+using System.Collections.Generic;
 
 public class Activity
 {
@@ -8,6 +9,7 @@ public class Activity
     private string _activityName;
     private string _startingMessage;
     private string _endingMessage;
+    private DateTime date = DateTime.Now;
 
 
     public Activity(string description, string activityName, string startingMessage, string endingMessage)
@@ -43,7 +45,7 @@ public class Activity
 
     public void ShowSpinner()
     {
-
+        
     }
 
     public void ShowCountdownTimer()
