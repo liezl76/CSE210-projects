@@ -40,7 +40,8 @@ class Program
     
     static void Main(string[] args)
     {
-
-
+        Program menu = new Program();
+        menu.DisplayActivityMenu();
+        Console.ReadLine();
     }
 }
