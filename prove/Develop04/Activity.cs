@@ -7,47 +7,35 @@ public class Activity
 {
     private string _description;
     private string _activityName;
-    private string _startingMessage;
-    private string _endingMessage;
-    private DateTime date = DateTime.Now;
-
-
-    public Activity(string description, string activityName, string startingMessage, string endingMessage)
+    private int _duration;
+    public Activity(string description, string activityName, int duration)
     {
-        _description = description;
-        _activityName = activityName;
-        _startingMessage = startingMessage;
-        _endingMessage = endingMessage;
+        this._description = description;
+        this._activityName = activityName;
+        this._duration = duration;
     }
-    public string GetActivity()
+    public void Start()
     {
-        string activity = $"{_activityName}";
-        return activity;
-    }
+        //Starting message
+        Console.WriteLine($"Starting {activityName} activity...");
+        Console.WriteLine(description);
+        Console.WriteLine($"Duration: {duration} seconds");
 
+    }
     public string GetDescription()
     {
         string description = $"{_description}";
         return description;
     }
-    
     public string DisplayStartingMessage()
     {
         string startmessage = $"{_startingMessage}";
         return startmessage;
     }
-
-    public string DisplayEndingMessage()
-    {
-        string endmessage = $"{_endingMessage}";
-        return endmessage;
-    }
-
     public void ShowSpinner()
     {
         
     }
-
     public void ShowCountdownTimer()
     {
 
