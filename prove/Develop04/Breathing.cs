@@ -6,7 +6,7 @@ public class BreathingActivity : Activity
     private string _breathInMessage;
     private string _breathOutMessage;
     
-    public BreathingActivity(string _activityName, string _description, int _duration, string breathInMessage, string breatOutMessage) : base(activityname, description, duration)
+    public BreathingActivity(string activityName, string description, int duration, string breathInMessage, string breatOutMessage) : base(activityName, description, duration)
     {
         this._breathInMessage = breathInMessage;
         this._breathOutMessage = breatOutMessage;
