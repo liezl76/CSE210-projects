@@ -2,16 +2,15 @@ using System;
 
 public class BreathingActivity : Activity
 {
-    private readonly int duration;
     private string _breathInMessage;
     private string _breathOutMessage;
     
-    public BreathingActivity(string _activityName, string _description, int _duration, string breathInMessage, string breatOutMessage) : base(activityName, description, duration)
+    public BreathingActivity(string activityName, string description, int duration, string breathInMessage, string breatOutMessage) : base(description, activityName, duration)
     {
         this._breathInMessage = breathInMessage;
         this._breathOutMessage = breatOutMessage;
     }
-    protected override void PerformActivity()
+    protected override void PerformActivity(int duration)
     {
         for (int i=0; i < duration; i++)
         {

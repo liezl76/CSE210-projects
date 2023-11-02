@@ -2,7 +2,6 @@ using System;
 
 public class ReflectionActivity : Activity
 {
-    private readonly int duration;
     private List<string> prompts;
     private List<string> questions;
     public ReflectionActivity(string name, string description, int duration, List<string> prompts, List<string> questions)
@@ -11,7 +10,7 @@ public class ReflectionActivity : Activity
         this.prompts = prompts;
         this.questions = questions;
     }
-    protected override void PerformActivity()
+    protected override void PerformActivity(int duration)
     {
         Random random = new Random();
 

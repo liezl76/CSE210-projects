@@ -33,7 +33,13 @@ public class Activity
         // Pause for several seconds before finishing
         Pause(3);
     }
-    protected virtual void PerformActivity()
+
+    private void PerformActivity()
+    {
+        throw new NotImplementedException();
+    }
+
+    protected virtual void PerformActivity(int duration)
     {
         //This method will be overridden in derived classess
     }

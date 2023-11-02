@@ -2,7 +2,6 @@ using System;
 
 public class ListingActivity : Activity
 {
-    private readonly int duration;
     private List<string> prompts;
     private List<string> items;
 
@@ -12,7 +11,7 @@ public class ListingActivity : Activity
         this.prompts = prompts;
         this.items = items;
     }
-    protected override void PerformActivity()
+    protected override void PerformActivity(int duration)
     {
         Random random = new Random();
 
