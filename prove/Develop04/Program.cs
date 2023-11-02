@@ -5,13 +5,13 @@ class Program
 {
     static void Main(string[] args)
     {
-        List<string> prompt = new List<string> {"Prompt 1", "Prompt 2", "Prmpt 3"};
+        List<string> prompts = new List<string> {"Prompt 1", "Prompt 2", "Prompt 3"};
         List<string> items = new List<string>();
 
         //Create instances of different activities
         Activity breathingActivity = new BreathingActivity("BreathingActivity", "Perform breathing exercises", 30, "Breath in...", "Breath out...");
-        Activity reflectionActivity = new ReflectionActivity("Reflection Activity", "Reflect on your thoughts", 30, prompt, new List<string> { "Question 1", "Question 2", "Question 3" });
-        Activity listingActivity = new ListingActivity("Listing Activity", "List items", 90, prompt, items);
+        Activity reflectionActivity = new ReflectionActivity("Reflection Activity", "Reflect on your thoughts", 30, prompts, new List<string> { "Question 1", "Question 2", "Question 3" });
+        Activity listingActivity = new ListingActivity("Listing Activity", "List items", 90, prompts, items);
 
         bool exitProgram = false;
         while (!exitProgram)
