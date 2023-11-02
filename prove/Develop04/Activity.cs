@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Net;
 
 public class Activity
 {
@@ -22,8 +21,19 @@ public class Activity
 
         //Pause for several seconds before finishing
         Pause(3);
+
+        // Specific activity behavior implemented in derived classes
+        PerformActivity();
+
+        // Common ending message
+        Console.WriteLine("\nGood job!");
+        Console.WriteLine($"You have completed the {_activityName} activity.");
+        Console.WriteLine($"Total duration: {_duration} seconds\n");
+
+        // Pause for several seconds before finishing
+        Pause(3);
     }
-    protected virtual void PerformActivity(int duration)
+    protected virtual void PerformActivity()
     {
         //This method will be overridden in derived classess
     }
