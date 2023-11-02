@@ -5,13 +5,13 @@ class Program
 {
     static void Main(string[] args)
     {
-        //List<string> prompt = new List<string> {"Prompt 1", "Prompt 2", "Prmpt 3"};
-        //List<string> items = new List<string>();
+        List<string> prompt = new List<string> {"Prompt 1", "Prompt 2", "Prmpt 3"};
+        List<string> items = new List<string>();
 
         //Create instances of different activities
-        //Activity breathingActivity = new BreathingActivity("BreathingActivity", "Perform breathing exercises", 30, "Breath in...", "Breath out...");
-        //Activity reflectionActivity = new ReflectionActivity("Reflection Activity", "Reflect on your thoughts", 30, prompts, new List<string> { "Question 1", "Question 2", "Question 3" });
-        //Activity listingActivity = new ListingActivity("Listing Activity", "List items", 90, prompts, items);
+        Activity breathingActivity = new BreathingActivity("BreathingActivity", "Perform breathing exercises", 30, "Breath in...", "Breath out...");
+        Activity reflectionActivity = new ReflectionActivity("Reflection Activity", "Reflect on your thoughts", 30, prompt, new List<string> { "Question 1", "Question 2", "Question 3" });
+        Activity listingActivity = new ListingActivity("Listing Activity", "List items", 90, prompt, items);
 
         bool exitProgram = false;
         while (!exitProgram)
@@ -31,15 +31,15 @@ class Program
             {
                 case "1":
                     Console.Clear();
-                    //breathingActivty.Start();
+                    breathingActivity.Start();
                     break;
                 case "2":
                     Console.Clear();
-                    //reflectionActivty.Start();
+                    reflectionActivity.Start();
                     break;
                 case "3":
                     Console.Clear();
-                    //listingActivty.Start();
+                    listingActivity.Start();
                     break;
                 case "4":
                     exitProgram = true;
