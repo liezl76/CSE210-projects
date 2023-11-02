@@ -1,7 +1,6 @@
 using System;
-using System.ComponentModel.Design;
-using System.Runtime.CompilerServices;
 using System.Collections.Generic;
+using System.Net;
 
 public class Activity
 {
@@ -17,28 +16,25 @@ public class Activity
     public void Start()
     {
         //Starting message
-        Console.WriteLine($"Starting {activityName} activity...");
-        Console.WriteLine(description);
-        Console.WriteLine($"Duration: {duration} seconds");
+        Console.WriteLine($"Starting {_activityName} activity...");
+        Console.WriteLine(_description);
+        Console.WriteLine($"Duration: {_duration} seconds");
 
+        //Pause for several seconds before finishing
+        Pause(3);
     }
-    public string GetDescription()
+    protected virtual void PerformActivity()
     {
-        string description = $"{_description}";
-        return description;
+        //This method will be overridden in derived classess
     }
-    public string DisplayStartingMessage()
+    protected void Pause(int seconds)
     {
-        string startmessage = $"{_startingMessage}";
-        return startmessage;
+        Console.WriteLine("Pausing...");
+        for (int i = seconds; i > 0; i--)
+        {
+            Console.WriteLine(i);
+            System.Threading.Thread.Sleep(3000); //Pause for 3 seconds
+        }
+        Console.WriteLine();
     }
-    public void ShowSpinner()
-    {
-        
-    }
-    public void ShowCountdownTimer()
-    {
-
-    }
-
 }
