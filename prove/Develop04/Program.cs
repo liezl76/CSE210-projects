@@ -9,15 +9,17 @@ class Program
         List<string> items = new List<string>();
 
         //Create instances of different activities
-        Activity breathingActivity = new BreathingActivity("BreathingActivity", "Perform breathing exercises", 60, "Breath in...", "Breath out...");
-        Activity reflectionActivity = new ReflectionActivity("Reflection Activity", "Reflect on your thoughts", 60, prompts, new List<string> { "Question 1", "Question 2", "Question 3" });
+        Activity breathingActivity = new BreathingActivity("BreathingActivity", 
+        "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on breathing. ", 
+        30, "Breath in...", "Breath out...");
+        Activity reflectionActivity = new ReflectionActivity("Reflection Activity", "Reflect on your thoughts", 30, prompts, new List<string> { "Question 1", "Question 2", "Question 3" });
         Activity listingActivity = new ListingActivity("Listing Activity", "List items", 90, prompts, items);
 
         bool exitProgram = false;
         while (!exitProgram)
         {
             Console.Clear(); //Clear the console screen
-            Console.WriteLine("Welcome to the Activity Program!");
+            Console.WriteLine("Welcome to the Mindfulness Program!");
             Console.WriteLine("\nMenu Options:");
             Console.WriteLine("1. Breathing Activity");
             Console.WriteLine("2. Reflection Activity");

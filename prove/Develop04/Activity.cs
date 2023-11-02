@@ -18,7 +18,6 @@ public class Activity
         //Starting message
         Console.WriteLine($"Starting {_activityName} activity...");
         Console.WriteLine(_description);
-        Console.WriteLine($"Duration: {_duration} seconds");
         Console.WriteLine("Prepare to begin....\n");
 
         //Pause for several seconds before finishing
