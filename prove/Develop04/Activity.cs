@@ -1,16 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 public class Activity
 {
     private string _description;
     private string _activityName;
-    private int _duration;
+    protected int _duration;
     public Activity(string description, string activityName, int duration)
     {
-        this._description = description;
-        this._activityName = activityName;
-        this._duration = duration;
+        _description = description;
+        _activityName = activityName;
+        _duration = duration;
     }
     public void Start()
     {
@@ -21,7 +22,7 @@ public class Activity
         Console.WriteLine("Prepare to begin....\n");
 
         //Pause for several seconds before finishing
-        Pause(3);
+        Pause(2);
 
         // Specific activity behavior implemented in derived classes
         PerformActivity();
@@ -44,7 +45,7 @@ public class Activity
         for (int i = seconds; i > 0; i--)
         {
             Console.WriteLine(i);
-            System.Threading.Thread.Sleep(3000); //Pause for 3 seconds
+            System.Threading.Thread.Sleep(2000); //Pause for 2 seconds
         }
         Console.WriteLine();
     }
