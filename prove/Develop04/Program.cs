@@ -9,8 +9,8 @@ class Program
         List<string> items = new List<string>();
 
         //Create instances of different activities
-        Activity breathingActivity = new BreathingActivity("BreathingActivity", "Perform breathing exercises", 30, "Breath in...", "Breath out...");
-        Activity reflectionActivity = new ReflectionActivity("Reflection Activity", "Reflect on your thoughts", 30, prompts, new List<string> { "Question 1", "Question 2", "Question 3" });
+        Activity breathingActivity = new BreathingActivity("BreathingActivity", "Perform breathing exercises", 60, "Breath in...", "Breath out...");
+        Activity reflectionActivity = new ReflectionActivity("Reflection Activity", "Reflect on your thoughts", 60, prompts, new List<string> { "Question 1", "Question 2", "Question 3" });
         Activity listingActivity = new ListingActivity("Listing Activity", "List items", 90, prompts, items);
 
         bool exitProgram = false;
@@ -20,7 +20,7 @@ class Program
             Console.WriteLine("Welcome to the Activity Program!");
             Console.WriteLine("\nMenu Options:");
             Console.WriteLine("1. Breathing Activity");
-            Console.WriteLine("2. Reflecting Activity");
+            Console.WriteLine("2. Reflection Activity");
             Console.WriteLine("3. Listing Activity");
             Console.WriteLine("4. Exit\n");
             Console.WriteLine();

@@ -18,6 +18,7 @@ public class Activity
         Console.WriteLine($"Starting {_activityName} activity...");
         Console.WriteLine(_description);
         Console.WriteLine($"Duration: {_duration} seconds");
+        Console.WriteLine("Prepare to begin....\n");
 
         //Pause for several seconds before finishing
         Pause(3);
@@ -33,13 +34,7 @@ public class Activity
         // Pause for several seconds before finishing
         Pause(3);
     }
-
-    private void PerformActivity()
-    {
-        throw new NotImplementedException();
-    }
-
-    protected virtual void PerformActivity(int duration)
+    protected virtual void PerformActivity()
     {
         //This method will be overridden in derived classess
     }

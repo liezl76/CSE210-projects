@@ -11,7 +11,8 @@ public class ListingActivity : Activity
         this.prompts = prompts;
         this.items = items;
     }
-    protected override void PerformActivity(int duration)
+    public int duration { get; private set; }
+    protected override void PerformActivity()
     {
         Random random = new Random();
 

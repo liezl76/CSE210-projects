@@ -10,7 +10,8 @@ public class BreathingActivity : Activity
         this._breathInMessage = breathInMessage;
         this._breathOutMessage = breatOutMessage;
     }
-    protected override void PerformActivity(int duration)
+    public int duration { get; private set; }
+    protected override void PerformActivity()
     {
         for (int i=0; i < duration; i++)
         {

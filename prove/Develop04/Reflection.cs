@@ -10,7 +10,9 @@ public class ReflectionActivity : Activity
         this.prompts = prompts;
         this.questions = questions;
     }
-    protected override void PerformActivity(int duration)
+    public int duration { get; private set; }
+    
+    protected override void PerformActivity()
     {
         Random random = new Random();
 
