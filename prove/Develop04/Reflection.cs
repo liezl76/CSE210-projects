@@ -12,17 +12,17 @@ public class ReflectionActivity : Activity
     }
     protected override void PerformActivity()
     {
-        Random random = new Random();
+        Random rnd = new Random();
 
         for (int i = 0; i < _duration; i++)
         {
-            string prompt = _prompts[random.Next(_prompts.Count)];
-            Console.WriteLine($"Prompt: {prompt}");
+            string prompts = _prompts[rnd.Next(_prompts.Count)];
+            Console.WriteLine($"Prompt: {_prompts}");
             Pause(2); // Pause for 2 seconds
 
             foreach (string question in _questions)
             {
-                Console.WriteLine($"Question: {question}");
+                Console.WriteLine($"Question: {_questions}");
                 Pause(3); // Pause for 3 seconds
             }
         }

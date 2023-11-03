@@ -12,7 +12,10 @@ class Program
         Activity breathingActivity = new BreathingActivity("BreathingActivity", 
         "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on breathing. ", 
         30, "Breath in...", "Breath out...");
-        Activity reflectionActivity = new ReflectionActivity("Reflection Activity", "Reflect on your thoughts", 30, prompts, new List<string> { "Question 1", "Question 2", "Question 3" });
+        Activity reflectionActivity = new ReflectionActivity("Reflection Activity", 
+        "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.", 
+        30, new List<string> {"Think of a time when you stood up for someone else.", "Think of a time when you did something really difficult.", "Think of a time when you helped someone in need."}, 
+        new List<string> { "Why was this experience meaningful to you?", "Have you ever done anything like this before?", "How did you get started?", "How did you feel when it was complete?" });
         Activity listingActivity = new ListingActivity("Listing Activity", "List items", 90, prompts, items);
 
         bool exitProgram = false;
