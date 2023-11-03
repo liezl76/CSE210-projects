@@ -1,47 +1,62 @@
 using System;
+using System.Collections.Generic;
 
 class Program
 {
-    public void DisplayWelcomeMessage()
+    static void Main(string[] args)
     {
-        Console.WriteLine("\nWelcome to the Program!");
-    }
-    public void DisplayActivityMenu()
-    {
-        bool isRunning = true;
-        while (isRunning)
+        List<string> prompts = new List<string> {"Prompt 1", "Prompt 2", "Prompt 3"};
+        List<string> items = new List<string>();
+
+        //Create instances of different activities
+        Activity breathingActivity = new BreathingActivity("BreathingActivity", 
+        "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on breathing. ", 
+        30, "Breath in...", "Breath out...");
+        Activity reflectionActivity = new ReflectionActivity("Reflection Activity", "Reflect on your thoughts", 30, prompts, new List<string> { "Question 1", "Question 2", "Question 3" });
+        Activity listingActivity = new ListingActivity("Listing Activity", "List items", 90, prompts, items);
+
+        bool exitProgram = false;
+        while (!exitProgram)
         {
+            Console.Clear(); //Clear the console screen
+            Console.WriteLine("Welcome to the Mindfulness Program!");
             Console.WriteLine("\nMenu Options:");
-            Console.WriteLine("Start breathing activity");
-            Console.WriteLine("Start reflecting activity");
-            Console.WriteLine("Start listing activity");
-            Console.WriteLine("Quit");
+            Console.WriteLine("1. Breathing Activity");
+            Console.WriteLine("2. Reflection Activity");
+            Console.WriteLine("3. Listing Activity");
+            Console.WriteLine("4. Exit\n");
             Console.WriteLine();
             Console.WriteLine("Select a choice from the menu: ");
-            int choice = Int32.Parse(Console.ReadLine());
+            string choice = Console.ReadLine();
 
             switch(choice)
             {
-                case 1:
-                break;
-
-                case 2:
-                break;
-
-                case 3:
-                break;
-
-                case 4:
-                    isRunning = false;
+                case "1":
+                    Console.Clear();
+                    breathingActivity.Start();
+                    break;
+                case "2":
+                    Console.Clear();
+                    reflectionActivity.Start();
+                    break;
+                case "3":
+                    Console.Clear();
+                    listingActivity.Start();
+                    break;
+                case "4":
+                    exitProgram = true;
+                    break;
+                default:
+                    Console.Clear();
+                    Console.WriteLine("Invalid choice. Please try again.\n");
                     break;
             }
+            if (!exitProgram)
+            {
+                Console.WriteLine("Press any key to continue....");
+                Console.ReadKey();
+            }
         }
-    }
-    
-    static void Main(string[] args)
-    {
-        Program menu = new Program();
-        menu.DisplayActivityMenu();
-        Console.ReadLine();
+        Console.WriteLine("Goodbye!\n");
     }
 }

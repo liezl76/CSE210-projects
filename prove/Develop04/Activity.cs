@@ -1,56 +1,51 @@
 using System;
-using System.ComponentModel.Design;
-using System.Runtime.CompilerServices;
 using System.Collections.Generic;
+using System.Threading;
 
 public class Activity
 {
     private string _description;
     private string _activityName;
-    private string _startingMessage;
-    private string _endingMessage;
-    private DateTime date = DateTime.Now;
-
-
-    public Activity(string description, string activityName, string startingMessage, string endingMessage)
+    protected int _duration;
+    public Activity(string description, string activityName, int duration)
     {
         _description = description;
         _activityName = activityName;
-        _startingMessage = startingMessage;
-        _endingMessage = endingMessage;
+        _duration = duration;
     }
-    public string GetActivity()
+    public void Start()
     {
-        string activity = $"{_activityName}";
-        return activity;
-    }
+        //Starting message
+        Console.WriteLine($"Starting {_activityName} activity...");
+        Console.WriteLine(_description);
+        Console.WriteLine("Prepare to begin....\n");
 
-    public string GetDescription()
+        //Pause for several seconds before finishing
+        Pause(2);
+
+        // Specific activity behavior implemented in derived classes
+        PerformActivity();
+
+        // Common ending message
+        Console.WriteLine("\nGood job!");
+        Console.WriteLine($"You have completed the {_activityName} activity.");
+        Console.WriteLine($"Total duration: {_duration} seconds\n");
+
+        // Pause for several seconds before finishing
+        Pause(3);
+    }
+    protected virtual void PerformActivity()
     {
-        string description = $"{_description}";
-        return description;
+        //This method will be overridden in derived classess
     }
-    
-    public string DisplayStartingMessage()
+    protected void Pause(int seconds)
     {
-        string startmessage = $"{_startingMessage}";
-        return startmessage;
+        Console.WriteLine("Pausing...");
+        for (int i = seconds; i > 0; i--)
+        {
+            Console.WriteLine(i);
+            System.Threading.Thread.Sleep(2000); //Pause for 2 seconds
+        }
+        Console.WriteLine();
     }
-
-    public string DisplayEndingMessage()
-    {
-        string endmessage = $"{_endingMessage}";
-        return endmessage;
-    }
-
-    public void ShowSpinner()
-    {
-        
-    }
-
-    public void ShowCountdownTimer()
-    {
-
-    }
-
 }
