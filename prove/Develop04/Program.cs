@@ -7,6 +7,19 @@ class Program
     {
         List<string> prompts = new List<string> {"Prompt 1", "Prompt 2", "Prompt 3"};
         List<string> items = new List<string>();
+        List<string> prompt = new List<string>()
+        {
+            "Using 10 words, describe yourself.",
+            "What can you learn from your biggest mistakes?",
+            "Make a list of everything that inspires you.",
+            // Add more prompts as needed
+        };
+        List<string> questions = new List<string>()
+        {
+            "What surprised you the most about your life?",
+            "What topic do you need to learn more about to live a more fulfilling life?",
+            // Add more questions as needed
+        };
 
         //Create instances of different activities
         Activity breathingActivity = new BreathingActivity("BreathingActivity", 

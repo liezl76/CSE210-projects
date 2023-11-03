@@ -2,12 +2,12 @@ using System;
 
 public class ReflectionActivity : Activity
 {
-    private List<string> _prompts;
+    private List<string> _prompt;
     private List<string> _questions;
     public ReflectionActivity(string activityName, string description, int duration, List<string> prompts, List<string> questions)
         : base(description, activityName, duration)
     {
-        _prompts = prompts;
+        _prompt = prompt;
         _questions = questions;
     }
     protected override void PerformActivity()
@@ -16,8 +16,8 @@ public class ReflectionActivity : Activity
 
         for (int i = 0; i < _duration; i++)
         {
-            string prompts = _prompts[rnd.Next(_prompts.Count)];
-            Console.WriteLine($"Prompt: {_prompts}");
+            string prompt = _prompt[rnd.Next(_prompt.Count)];
+            Console.WriteLine($"Prompt: {_prompt}");
             Pause(2); // Pause for 2 seconds
 
             foreach (string question in _questions)
