@@ -16,6 +16,16 @@ public class ListingActivity : Activity
     {
         Random random = new Random();
 
+        // Prompt the user to input the duration in seconds
+        Console.Write("Enter the duration(in seconds): ");
+        int durationInSeconds = Convert.ToInt32(Console.ReadLine());
+        // Calculate the duration in milliseconds
+        int durationInMilliseconds = durationInSeconds * 1000;
+        // Get the start time of the loop
+        DateTime startTime = DateTime.Now;
+        // Continue the loop until the desired duration has elapsed
+        while (DateTime.Now - startTime < TimeSpan.FromMilliseconds(durationInMilliseconds))
+
         for (int i = 0; i < _duration; i++)
         {
             string prompts = _prompts[random.Next(_prompts.Count)];
@@ -29,12 +39,13 @@ public class ListingActivity : Activity
             {
                 string item = Console.ReadLine();
                 if (string.IsNullOrEmpty(item))
-                    break;
+                {
+                    break; // Exit the loop when an empty string is entered
+                }
 
                 _items.Add(item);
                 count++;
             }
-
             Console.WriteLine($"Total items listed: {count}");
             Pause(2); // Pause for 2 seconds
         }

@@ -7,14 +7,14 @@ class Program
     {
         List<string> prompts = new List<string> {"Prompt 1", "Prompt 2", "Prompt 3"};
         List<string> items = new List<string>();
-        List<string> prompt = new List<string>
+        List<string> promptlist = new List<string>
         {
             "Using 10 words, describe yourself.",
             "What can you learn from your biggest mistakes?",
             "Make a list of everything that inspires you.",
             // Add more prompts as needed
         };
-        List<string> questions = new List<string>()
+        List<string> questionlist = new List<string>()
         {
             "What surprised you the most about your life?",
             "What topic do you need to learn more about to live a more fulfilling life?",
@@ -27,8 +27,8 @@ class Program
         30, "Breath in...", "Breath out...");
         Activity reflectionActivity = new ReflectionActivity("Reflection Activity", 
         "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.", 
-        10, prompt, questions);
-        Activity listingActivity = new ListingActivity("Listing Activity", "List items", 90, prompts, items);
+        3, promptlist, questionlist);
+        Activity listingActivity = new ListingActivity("Listing Activity", "List items", 5, prompts, items);
 
         bool exitProgram = false;
         while (!exitProgram)
