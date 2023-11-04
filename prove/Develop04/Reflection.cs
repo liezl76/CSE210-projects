@@ -5,6 +5,7 @@ public class ReflectionActivity : Activity
 {
     private List<string> _prompt;
     private List<string> _questions;
+    private DateTime startTime;
 
     public ReflectionActivity(string activityName, string description, int duration, List<string> prompt, List<string> questions)
         : base(description, activityName, duration)
@@ -20,12 +21,12 @@ public class ReflectionActivity : Activity
         {
             string prompt = _prompt[rnd.Next(_prompt.Count)];
             Console.WriteLine($"Prompt: {prompt}");
-            Pause(2); // Pause for 2 seconds
+            Pause(5); // Pause for 5 seconds
 
             foreach (string question in _questions)
             {
                 Console.WriteLine($"Question: {question}");
-                Pause(3); // Pause for 3 seconds
+                Pause(5); // Pause for 5 seconds
             }
         }
     }
