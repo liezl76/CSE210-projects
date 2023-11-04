@@ -7,7 +7,7 @@ class Program
     {
         List<string> prompts = new List<string> {"Prompt 1", "Prompt 2", "Prompt 3"};
         List<string> items = new List<string>();
-        List<string> prompt = new List<string>()
+        List<string> prompt = new List<string>
         {
             "Using 10 words, describe yourself.",
             "What can you learn from your biggest mistakes?",

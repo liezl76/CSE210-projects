@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 public class ListingActivity : Activity
 {
@@ -17,8 +18,8 @@ public class ListingActivity : Activity
 
         for (int i = 0; i < _duration; i++)
         {
-            string prompt = _prompts[random.Next(_prompts.Count)];
-            Console.WriteLine($"Prompt: {prompt}");
+            string prompts = _prompts[random.Next(_prompts.Count)];
+            Console.WriteLine($"Prompt: {prompts}");
             Pause(2); // Pause for 2 seconds
 
             Console.WriteLine("Start Listing Items:");
