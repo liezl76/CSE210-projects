@@ -5,6 +5,7 @@ class Program
 {
     static void Main(string[] args)
     {
+        Dictionary<string, int> activityCounts = new Dictionary<string, int>();
         List<string> prompts = new List<string> 
         {
             "Using 10 words, describe yourself.",
@@ -41,7 +42,7 @@ class Program
         //Create instances of different activities
         Activity breathingActivity = new BreathingActivity("BreathingActivity", 
         "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on breathing. ", 
-        30, "Breath in...", "Breath out...");
+        10, "Breath in...", "Breath out...");
         Activity reflectionActivity = new ReflectionActivity("Reflection Activity", 
         "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.", 
         3, promptlist, questionlist);
@@ -89,6 +90,24 @@ class Program
                 Console.ReadKey();
             }
         }
+        // Print the activity counts
+        Console.WriteLine("\nActivity Counts:");
+        foreach (var count in activityCounts)
+        {
+            Console.WriteLine($"{count.Key}: {count.Value} times");
+        }
         Console.WriteLine("Goodbye!\n");
+    }
+    // Method to update the activity counts
+    static void UpdateActivityCount(Dictionary<string, int> activityCounts, string activityName)
+    {
+        if (activityCounts.ContainsKey(activityName))
+        {
+            activityCounts[activityName]++;
+        }
+        else
+        {
+            activityCounts.Add(activityName, 1);
+        }
     }
 }

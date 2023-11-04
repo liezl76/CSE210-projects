@@ -44,7 +44,7 @@ public class Activity
         for (int i = seconds; i > 0; i--)
         {
             Console.WriteLine(i);
-            System.Threading.Thread.Sleep(1000); //Pause for 1 second
+            System.Threading.Thread.Sleep(2000); //Pause for 2 seconds
         }
         Console.WriteLine();
     }
