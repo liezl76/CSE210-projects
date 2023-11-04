@@ -5,19 +5,36 @@ class Program
 {
     static void Main(string[] args)
     {
-        List<string> prompts = new List<string> {"Prompt 1", "Prompt 2", "Prompt 3"};
-        List<string> items = new List<string>();
-        List<string> promptlist = new List<string>
+        List<string> prompts = new List<string> 
         {
             "Using 10 words, describe yourself.",
             "What can you learn from your biggest mistakes?",
             "Make a list of everything that inspires you.",
+            "Who are the people that you appreciate?",
+            "What are personal strength of yours?",
+            "When have you felt the Holy Ghost this month?",
+            "Who are the people that you have helped this week?",
+            // Add more prompts as needed
+        };
+        List<string> items = new List<string>();
+        List<string> promptlist = new List<string>
+        {
+            "Think of a time when you stood up for someone else.",
+            "Think of a time when you did something really difficult.",
+            "Think of a time when you helped someone in need.",
+            "Think of a time when you did something really selfless.",
             // Add more prompts as needed
         };
         List<string> questionlist = new List<string>()
         {
             "What surprised you the most about your life?",
             "What topic do you need to learn more about to live a more fulfilling life?",
+            "Why the experience meaningful to you?",
+            "Have you ever done anything like this before?",
+            "How did you get started?",
+            "How did you feel when it was completed?",
+            "What did you learn about yourself through this experience?",
+            "How can you keep this experience in mind in the futre?",
             // Add more questions as needed
         };
 
@@ -28,7 +45,7 @@ class Program
         Activity reflectionActivity = new ReflectionActivity("Reflection Activity", 
         "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.", 
         3, promptlist, questionlist);
-        Activity listingActivity = new ListingActivity("Listing Activity", "List items", 5, prompts, items);
+        Activity listingActivity = new ListingActivity("Listing Activity", "List items", 3, prompts, items);
 
         bool exitProgram = false;
         while (!exitProgram)

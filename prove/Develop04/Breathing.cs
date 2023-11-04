@@ -19,7 +19,6 @@ public class BreathingActivity : Activity
         int durationInMilliseconds = durationInSeconds * 1000;
         // Get the start time of the loop
         DateTime startTime = DateTime.Now;
-        
         // Continue the loop until the desired duration has elapsed
         while (DateTime.Now - startTime < TimeSpan.FromMilliseconds(durationInMilliseconds))
         {
