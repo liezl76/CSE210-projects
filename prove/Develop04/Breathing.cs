@@ -13,13 +13,12 @@ public class BreathingActivity : Activity
     protected override void PerformActivity()
     {
         // Prompt the user to input the duration in seconds
-        Console.Write("Enter the duration: ");
+        Console.Write("Enter the duration(in seconds): ");
         int durationInSeconds = Convert.ToInt32(Console.ReadLine());
         // Calculate the duration in milliseconds
         int durationInMilliseconds = durationInSeconds * 1000;
         // Get the start time of the loop
         DateTime startTime = DateTime.Now;
-        
         // Continue the loop until the desired duration has elapsed
         while (DateTime.Now - startTime < TimeSpan.FromMilliseconds(durationInMilliseconds))
         {
