@@ -21,9 +21,51 @@ class Program
         scoreboard.RecordEvent("Checklist Goal");
         scoreboard.RecordEvent("Checklist Goal");
         scoreboard.RecordEvent("Checklist Goal");
-
-        scoreboard.DisplayGoals();
-        scoreboard.DisplayScore();
         
+        bool exitProgram = false;
+        while (!exitProgram)
+        {
+            Console.Clear(); //Clear the console screen
+            Console.WriteLine("Welcome to the Eternal Quest Program!");
+            Console.WriteLine("\nMenu Options:");
+            Console.WriteLine("1. Breathing Activity");
+            Console.WriteLine("2. Reflection Activity");
+            Console.WriteLine("3. Listing Activity");
+            Console.WriteLine("4. ");
+            Console.WriteLine("5. Exit\n");
+            Console.WriteLine();
+            Console.WriteLine("Select a choice from the menu: ");
+            string choice = Console.ReadLine();
+
+            switch(choice)
+            {
+                case "1":
+                    Console.Clear();
+                    //breathingActivity.Start();
+                    break;
+                case "2":
+                    Console.Clear();
+                    //reflectionActivity.Start();
+                    break;
+                case "3":
+                    Console.Clear();
+                    //listingActivity.Start();
+                    break;
+                case "4":
+                    exitProgram = true;
+                    break;
+                default:
+                    Console.Clear();
+                    Console.WriteLine("Invalid choice. Please try again.\n");
+                    break;
+            }
+            if (!exitProgram)
+            {
+                Console.WriteLine("Press any key to continue....");
+                Console.ReadKey();
+            }
+        }
+        //scoreboard.DisplayGoals();
+        //scoreboard.DisplayScore();
     }
 }
