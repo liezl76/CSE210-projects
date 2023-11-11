@@ -28,10 +28,10 @@ class Program
             Console.Clear(); //Clear the console screen
             Console.WriteLine("Welcome to the Eternal Quest Program!");
             Console.WriteLine("\nMenu Options:");
-            Console.WriteLine("1. Breathing Activity");
-            Console.WriteLine("2. Reflection Activity");
-            Console.WriteLine("3. Listing Activity");
-            Console.WriteLine("4. ");
+            Console.WriteLine("1. Create new Goal");
+            Console.WriteLine("2. List Goals");
+            Console.WriteLine("3. Load Goals");
+            Console.WriteLine("4. Record Events");
             Console.WriteLine("5. Exit\n");
             Console.WriteLine();
             Console.WriteLine("Select a choice from the menu: ");
@@ -52,6 +52,10 @@ class Program
                     //listingActivity.Start();
                     break;
                 case "4":
+                    Console.Clear();
+                    //
+                    break;
+                case "5":
                     exitProgram = true;
                     break;
                 default:
