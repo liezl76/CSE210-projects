@@ -36,7 +36,7 @@ public class Scoreboard
     {
         //Code to save goals to a file
         Console.WriteLine("Saving the file...");
-        string file = "Goals.txt";
+        string file = "goals.txt";
 
         using (StreamWriter writer = new StreamWriter(file))
         {
