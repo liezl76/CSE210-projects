@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public abstract class Goal
 {
-    public string _name;
+    private string _name;
     protected string _type;
     protected int _value;
     protected bool _completed;
