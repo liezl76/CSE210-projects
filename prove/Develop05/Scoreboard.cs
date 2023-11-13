@@ -35,6 +35,15 @@ public class Scoreboard
     public void SaveGoals()
     {
         //Code to save goals to a file
+        Console.WriteLine("Saving the file...");
+        string file = "Goals.txt";
+
+        using (StreamWriter writer = new StreamWriter(file))
+        {
+            writer.WriteLine();
+            writer.WriteLine();
+            writer.WriteLine();
+        }
     }
     public void LoadGoals()
     {
