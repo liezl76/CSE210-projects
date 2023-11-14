@@ -4,8 +4,12 @@ using System.Collections.Generic;
 
 class Program
 {
+    private List<Goal> goals = new List<Goal>();
+    private int score = 0;
     static void Main(string[] args)
     {
+        //LoadGoals();
+
         bool exitProgram = false;
         while (!exitProgram)
         {
@@ -25,7 +29,7 @@ class Program
             {
                 case "1":
                     Console.Clear();
-                    //breathingActivity.Start();
+                    //CreateGoal();
                     break;
                 case "2":
                     Console.Clear();
