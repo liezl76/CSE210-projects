@@ -24,19 +24,28 @@ public class ReflectionActivity : Activity
         DateTime startTime = DateTime.Now;
         
         // Continue the loop until the desired duration has elapsed
-        while (DateTime.Now - startTime < TimeSpan.FromMilliseconds(durationInMilliseconds))
+        while ((DateTime.Now - startTime).TotalSeconds < durationInSeconds)
+        {
+            string prompt = _prompt[rnd.Next(_prompt.Count)];
+            Console.WriteLine($"Prompt: {prompt}");
+            Pause(5); // Pause for 5 seconds
 
-        for (int i = 0; i < _duration; i++)
+            foreach (string question in _questions)
             {
-                string prompt = _prompt[rnd.Next(_prompt.Count)];
-                Console.WriteLine($"Prompt: {prompt}");
+                Console.WriteLine($"Question: {question}");
                 Pause(5); // Pause for 5 seconds
 
-                foreach (string question in _questions)
+                // Check if the desired duration has elapsed
+                if ((DateTime.Now - startTime).TotalSeconds >= durationInSeconds)
                 {
-                    Console.WriteLine($"Question: {question}");
-                    Pause(5); // Pause for 5 seconds
+                    break; // Exit the loop
                 }
             }
+            // Check if the desired duration has elapsed
+            if ((DateTime.Now - startTime).TotalSeconds >= durationInSeconds)
+            {
+                break; // Exit the loop
+            }
+        }
     }
 }
