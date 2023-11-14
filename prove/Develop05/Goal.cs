@@ -3,14 +3,15 @@ using System.Collections.Generic;
 
 public abstract class Goal
 {
-    private string _name;
+
+    protected string _goalName;
     protected string _type;
     protected int _value;
     protected bool _completed;
 
-    public Goal(string name, string type, int value)
+    public Goal(string goalName, string type, int value)
     {
-        _name = name;
+        _goalName = goalName;
         _type = type;
         _value = value;
         _completed = false;
@@ -26,6 +27,6 @@ public abstract class Goal
     }
     public override string ToString()
     {
-        return "Name:" + _name + ", Type: " + _type + ", Value: " + _value + ", Completed: " + _completed;
+        return "Name:" + _goalName + ", Type: " + _type + ", Value: " + _value + ", Completed: " + _completed;
     }
 }
