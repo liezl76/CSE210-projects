@@ -50,13 +50,15 @@ class Program
 
     static void CreateGoal()
     {
-        Console.Write("Enter goal name: ");
-        string name = Console.ReadLine();
+        //Console.Write("Enter goal name: ");
+        //string name = Console.ReadLine();
 
-        Console.WriteLine("Select goal type:");
+        //Console.WriteLine("Select goal type: ");
         Console.WriteLine("1. Simple goal");
         Console.WriteLine("2. Eternal goal");
         Console.WriteLine("3. Checklist goal");
+        Console.WriteLine("Select a choice from the menu: ");
+        string name = Console.ReadLine();
 
         string typeChoice = Console.ReadLine();
         int value = 0;
