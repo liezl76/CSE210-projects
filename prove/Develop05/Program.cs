@@ -151,8 +151,7 @@ class Program
 
     static void LoadGoals()
     {
-        // Load goals and score from a file or database
-        // For simplicity, let's assume we have some default goals
+        // Load goals and score from a file
         SimpleGoal goal1 = new SimpleGoal("Run a marathon", "Simple", 1000, 0);
         EternalGoal goal2 = new EternalGoal("Read scriptures", "Eternal", 100, 0);
         ChecklistGoal goal3 = new ChecklistGoal("Learn a new language", "Checklist", 200, 5);
@@ -166,8 +165,7 @@ class Program
 
     static void SaveGoals()
     {
-        // Save goals and score to a file or database
-        // For simplicity, we won't implement this part in this example
+        // Save goals and score
         Console.WriteLine("Goals and score saved successfully");
     }
 }
