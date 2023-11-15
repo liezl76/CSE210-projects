@@ -163,9 +163,18 @@ class Program
         score = 0;
     }
 
-    static void SaveGoals()
+    static void SaveGoals(string filepath)
     {
-        // Save goals and score
+        // using (StreamWriter writer = new StreamWriter(filePath))
+        // {
+        //     foreach (var entry in entries)
+        //     {
+        //         writer.WriteLine($"Date: {entry.Date}");
+        //         writer.WriteLine($"Prompt: {entry.Prompt}");
+        //         writer.WriteLine($"Response: {entry.Response}");
+        //         writer.WriteLine();
+        //     }
+        // }
         Console.WriteLine("Goals and score saved successfully");
     }
 }
