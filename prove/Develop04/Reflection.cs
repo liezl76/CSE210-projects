@@ -41,11 +41,6 @@ public class ReflectionActivity : Activity
                     break; // Exit the loop
                 }
             }
-            // Check if the desired duration has elapsed
-            if ((DateTime.Now - startTime).TotalSeconds >= durationInSeconds)
-            {
-                break; // Exit the loop
-            }
         }
     }
 }
