@@ -18,8 +18,6 @@ public class ReflectionActivity : Activity
         // Prompt the user to input the duration in seconds
         Console.Write("Enter the duration(in seconds): ");
         int durationInSeconds = Convert.ToInt32(Console.ReadLine());
-        // Calculate the duration in milliseconds
-        int durationInMilliseconds = durationInSeconds * 1000;
         // Get the start time of the loop
         DateTime startTime = DateTime.Now;
         
