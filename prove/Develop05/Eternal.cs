@@ -5,7 +5,7 @@ public class EternalGoal : Goal
 {
     private int _recordCount;
 
-    public EternalGoal(string name, string type, int value, int recordCount) : base(name, type, value)
+    public EternalGoal(string goalName, string type, int value, int recordCount) : base(goalName, type, value)
     {
         _recordCount = recordCount;
     }
