@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Formats.Asn1;
 using System.IO;
 
 class Program
@@ -127,12 +128,55 @@ class Program
 
     public static void LoadGoals()
     {
-        Console.WriteLine("Load goals ");
+        Console.WriteLine("Loading goals...");
+        string file = "goals.txt";
+
+        if (File.Exists(file))
+        {
+            goals.Clear();
+
+            using (StreamReader reader = new StreamReader(file))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    // Parse the line and create a new Goal object
+                    string[] parts = line.Split(" - ");
+
+                    string name = parts[0].Substring(parts[0].IndexOf(": ") + 2);
+                    string description = parts[1].Substring(parts[1].IndexOf(": ") + 2);
+
+                    //Goal newGoal = new Goal(name, description);
+
+                    // Add the new Goal object to the goals list
+                    //goals.Add(newGoal);
+                }
+            }
+
+            Console.WriteLine("Goals loaded successfully.");
+        }
+        else
+        {
+            Console.WriteLine("No goals file found.");
+        }
+
+        Console.WriteLine();
     }
 
     public static void SaveGoals()
     {
-        Console.WriteLine("Save goals ");
+        Console.WriteLine("Saving the files...");
+        string file = "goals.txt";
+        
+        using (StreamWriter writer = new StreamWriter(file))
+        {
+            foreach (Goal goals in goals)
+            {
+                writer.WriteLine($"Goal: {goals._goalName}");
+                writer.WriteLine($"Description: {goals._description}");
+                   writer.WriteLine($"Points: {goals._points}");  
+            }
+        } 
     }
 
     public static void RecordEvent()
