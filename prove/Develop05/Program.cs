@@ -12,16 +12,15 @@ class Program
         bool exitProgram = false;
         while (!exitProgram)
         {
-            Console.WriteLine("Welcome to the Eternal Quest Program!");
+            Console.WriteLine("\nWelcome to the Eternal Quest Program!");
             Console.WriteLine("\nMenu Options:");
             Console.WriteLine("1. Create new Goal");
             Console.WriteLine("2. List Goals");
             Console.WriteLine("3. Load Goals");
             Console.WriteLine("4. Save Goals");
             Console.WriteLine("5. Record Event");
-            Console.WriteLine("6. Quit");
-            Console.WriteLine("Enter your choice:");
-
+            Console.WriteLine("6. Quit\n");
+            Console.WriteLine("Select a choice from the menu: ");
             int choice = Convert.ToInt32(Console.ReadLine());
 
             switch (choice)
@@ -62,7 +61,7 @@ class Program
         Console.WriteLine("Select from the menu: ");
         Console.WriteLine("1. Simple Goal");
         Console.WriteLine("2. Eternal Goal");
-        Console.WriteLine("3. Checklist Goal");
+        Console.WriteLine("3. Checklist Goal\n");
         int goalType = Convert.ToInt32(Console.ReadLine());
 
         Console.WriteLine("What is the name of your goal?: ");
@@ -143,12 +142,10 @@ class Program
                     string goalName = line.Replace("Goal: ", "");
                     string description = reader.ReadLine().Replace("Description: ", "");
                     int points = Convert.ToInt32(reader.ReadLine().Replace("Points: ", ""));
-                    int targetCount = Convert.ToInt32(reader.ReadLine().Replace("Target Count: ", ""));
-                    int bonusPoints = Convert.ToInt32(reader.ReadLine().Replace("Bonus Points: ", ""));
+
 
                     goals.Add(new SimpleGoal(goalName, description, points));
                     goals.Add(new EternalGoal(goalName, description, points));
-                    goals.Add(new ChecklistGoal(goalName, description, points, targetCount, bonusPoints));
                 }
             }
 
@@ -163,11 +160,9 @@ class Program
     public static void SaveGoals()
     {
         Console.WriteLine("Saving the goals...");
+        string file = "goals.txt";
 
-        Console.WriteLine("Enter the file path to save goals to:");
-        string filePath = Console.ReadLine();
-
-        using (StreamWriter writer = new StreamWriter(filePath))
+        using (StreamWriter writer = new StreamWriter(file))
         {
             foreach (Goal goal in goals)
             {

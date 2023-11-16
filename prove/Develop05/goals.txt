@@ -1,3 +1,6 @@
-Goal: read scriptures
-Description: read scriptures for 15 minutes a day
+Goal: read scripture 
+Description: read scriptures at least 15 minutes a day
 Points: 50
+Goal: go temple at least 3x a year
+Description: go to temple at least 3x a year
+Points: 100
