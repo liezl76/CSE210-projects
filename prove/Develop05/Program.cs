@@ -66,7 +66,7 @@ class Program
         int goalType = Convert.ToInt32(Console.ReadLine());
 
         Console.WriteLine("What is the name of your goal?: ");
-        string goalname = Console.ReadLine();
+        string goalName = Console.ReadLine();
 
         Console.WriteLine("What is the short description of it?: ");
         string description = Console.ReadLine();
@@ -77,10 +77,10 @@ class Program
         switch (goalType)
         {
             case 1:
-                goals.Add(new SimpleGoal(goalname, description, points));
+                goals.Add(new SimpleGoal(goalName, description, points));
                 break;
             case 2:
-                goals.Add(new EternalGoal(goalname, description, points));
+                goals.Add(new EternalGoal(goalName, description, points));
                 break;
             case 3:
                 Console.WriteLine("Enter target count:");
@@ -89,7 +89,7 @@ class Program
                 Console.WriteLine("Enter bonus points:");
                 int bonusPoints = Convert.ToInt32(Console.ReadLine());
 
-                goals.Add(new ChecklistGoal(goalname, description, points, targetCount, bonusPoints));
+                goals.Add(new ChecklistGoal(goalName, description, points, targetCount, bonusPoints));
                 break;
             default:
                 Console.WriteLine("Invalid goal type. Please try again.");
@@ -128,28 +128,27 @@ class Program
 
     public static void LoadGoals()
     {
-        Console.WriteLine("Loading goals...");
-        string file = "goals.txt";
+        Console.WriteLine("Enter the file path to load goals from:");
+        string filePath = Console.ReadLine();
 
-        if (File.Exists(file))
+        if (File.Exists(filePath))
         {
-            goals.Clear();
+            goals.Clear(); // Clear the existing goals list
 
-            using (StreamReader reader = new StreamReader(file))
+            using (StreamReader reader = new StreamReader(filePath))
             {
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
-                    // Parse the line and create a new Goal object
-                    string[] parts = line.Split(" - ");
+                    string goalName = line.Replace("Goal: ", "");
+                    string description = reader.ReadLine().Replace("Description: ", "");
+                    int points = Convert.ToInt32(reader.ReadLine().Replace("Points: ", ""));
+                    int targetCount = Convert.ToInt32(reader.ReadLine().Replace("Target Count: ", ""));
+                    int bonusPoints = Convert.ToInt32(reader.ReadLine().Replace("Bonus Points: ", ""));
 
-                    string name = parts[0].Substring(parts[0].IndexOf(": ") + 2);
-                    string description = parts[1].Substring(parts[1].IndexOf(": ") + 2);
-
-                    //Goal newGoal = new Goal(name, description);
-
-                    // Add the new Goal object to the goals list
-                    //goals.Add(newGoal);
+                    goals.Add(new SimpleGoal(goalName, description, points));
+                    goals.Add(new EternalGoal(goalName, description, points));
+                    goals.Add(new ChecklistGoal(goalName, description, points, targetCount, bonusPoints));
                 }
             }
 
@@ -157,26 +156,28 @@ class Program
         }
         else
         {
-            Console.WriteLine("No goals file found.");
+            Console.WriteLine("File not found. Please try again.");
         }
-
-        Console.WriteLine();
     }
 
     public static void SaveGoals()
     {
-        Console.WriteLine("Saving the files...");
-        string file = "goals.txt";
-        
-        using (StreamWriter writer = new StreamWriter(file))
+        Console.WriteLine("Saving the goals...");
+
+        Console.WriteLine("Enter the file path to save goals to:");
+        string filePath = Console.ReadLine();
+
+        using (StreamWriter writer = new StreamWriter(filePath))
         {
-            foreach (Goal goals in goals)
+            foreach (Goal goal in goals)
             {
-                writer.WriteLine($"Goal: {goals._goalName}");
-                writer.WriteLine($"Description: {goals._description}");
-                writer.WriteLine($"Points: {goals._points}");  
+                writer.WriteLine($"Goal: {goal._goalName}");
+                writer.WriteLine($"Description: {goal._description}");
+                writer.WriteLine($"Points: {goal._points}");
             }
-        } 
+        }
+
+        Console.WriteLine("Goals saved successfully.");
     }
 
     public static void RecordEvent()
