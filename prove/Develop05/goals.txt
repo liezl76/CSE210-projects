@@ -1,0 +1,3 @@
+Goal: read scriptures
+Description: read scriptures for 15 minutes a day
+Points: 50

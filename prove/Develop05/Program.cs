@@ -174,7 +174,7 @@ class Program
             {
                 writer.WriteLine($"Goal: {goals._goalName}");
                 writer.WriteLine($"Description: {goals._description}");
-                   writer.WriteLine($"Points: {goals._points}");  
+                writer.WriteLine($"Points: {goals._points}");  
             }
         } 
     }
