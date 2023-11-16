@@ -120,12 +120,12 @@ class Program
 
     public static void LoadGoals()
     {
-        Console.WriteLine("Load goals functionality not implemented yet.");
+        Console.WriteLine("Load goals ");
     }
 
     public static void SaveGoals()
     {
-        Console.WriteLine("Save goals functionality not implemented yet.");
+        Console.WriteLine("Save goals ");
     }
 
     public static void RecordEvent()
