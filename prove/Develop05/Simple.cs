@@ -3,14 +3,18 @@ using System.Collections.Generic;
 
 public class SimpleGoal : Goal
 {
-    protected int _bonusPoints;
-    public SimpleGoal(string goalName, string type, int value, int bonusPoints) : base(goalName, type, value)
+    public SimpleGoal(string goalName, string description, int points) : base(goalName, description, points)
     {
-        _bonusPoints = bonusPoints;
     }
-    public override void RecordEvent()
+
+    public override int RecordEvent()
     {
-        _completed = true;
-        // record event for SimpleGoal
+        Console.WriteLine("Congratulations! You completed the simple goal: " + _goalName);
+        return _points;
+    }
+
+    public override bool IsComplete()
+    {
+        return true;
     }
 }

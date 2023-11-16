@@ -3,15 +3,18 @@ using System.Collections.Generic;
 
 public class EternalGoal : Goal
 {
-    private int _recordCount;
-
-    public EternalGoal(string goalName, string type, int value, int recordCount) : base(goalName, type, value)
+    public EternalGoal(string goalName, string description, int points) : base(goalName, description, points)
     {
-        _recordCount = recordCount;
     }
-    public override void RecordEvent()
+
+    public override int RecordEvent()
     {
-        _completed = true;
-        //record event for EternalGoal
+        Console.WriteLine("You recorded progress for the eternal goal: " + _goalName);
+        return _points;
+    }
+
+    public override bool IsComplete()
+    {
+        return false;
     }
 }
