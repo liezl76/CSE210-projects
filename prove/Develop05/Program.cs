@@ -4,15 +4,15 @@ using System.IO;
 
 class Program
 {
-    public static List<Goal> goals = new List<Goal>();
+    private static List<Goal> goals = new List<Goal>();
 
     public static void Main(string[] args)
     {
-        bool quit = false;
-
-        while (!quit)
+        bool exitProgram = false;
+        while (!exitProgram)
         {
-            Console.WriteLine("Options:");
+            Console.WriteLine("Welcome to the Eternal Quest Program!");
+            Console.WriteLine("\nMenu Options:");
             Console.WriteLine("1. Create new Goal");
             Console.WriteLine("2. List Goals");
             Console.WriteLine("3. Load Goals");
@@ -41,11 +41,16 @@ class Program
                     RecordEvent();
                     break;
                 case 6:
-                    quit = true;
+                    exitProgram = true;
                     break;
                 default:
                     Console.WriteLine("Invalid choice. Please try again.");
                     break;
+            }
+            if (!exitProgram)
+            {
+                Console.WriteLine("Press any key to continue....");
+                Console.ReadKey();
             }
         }
     }
@@ -91,6 +96,7 @@ class Program
         }
 
         Console.WriteLine("Goal created successfully.");
+        Console.WriteLine();
     }
 
     public static void ListGoals()
