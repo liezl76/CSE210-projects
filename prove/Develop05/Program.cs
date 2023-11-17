@@ -34,7 +34,7 @@ class Program
                     LoadGoals();
                     break;
                 case 4:
-                    RecordEvent();
+                    SaveGoals();
                     break;
                 case 5:
                     RecordEvent();
