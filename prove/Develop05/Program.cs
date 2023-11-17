@@ -6,7 +6,7 @@ using System.IO;
 class Program
 {
     private static List<Goal> goals = new List<Goal>();
-    private int score = 0;
+    static int score = 0;
 
     public static void Main(string[] args)
     {
@@ -176,7 +176,7 @@ class Program
         Console.WriteLine("Goals saved successfully.");
     }
 
-    public void RecordEvent()
+    public static void RecordEvent()
     {
         Console.Write("Enter the name of the goal you completed: ");
         string name = Console.ReadLine();
