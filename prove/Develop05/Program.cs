@@ -91,11 +91,12 @@ class Program
                 writer.WriteLine($"Goal: {goal._goalName}");
                 writer.WriteLine($"Description: {goal._description}");
                 writer.WriteLine($"Points: {goal._points}");
+                writer.WriteLine($"Completed Goals: {goal.completed}");
             }
         }
         Console.WriteLine("Goals saved successfully.");
     }
-    
+
     private static void LoadGoals()
     {
         Console.WriteLine("Enter the file path to load goals from: ");
