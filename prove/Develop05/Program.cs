@@ -37,6 +37,9 @@ class Program
                     RecordEvent();
                     break;
                 case 5:
+                    RecordEvent();
+                    break;
+                case 6:
                     exitProgram = true;
                     break;
                 default:
@@ -75,6 +78,7 @@ class Program
             Console.WriteLine("Invalid goal index. Please try again.");
         }
     }
+
     public static void SaveGoals()
     {
         Console.WriteLine("Saving the goals...");
@@ -91,6 +95,7 @@ class Program
         }
         Console.WriteLine("Goals saved successfully.");
     }
+    
     private static void LoadGoals()
     {
         Console.WriteLine("Enter the file path to load goals from: ");
