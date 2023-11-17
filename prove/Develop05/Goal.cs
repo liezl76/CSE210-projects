@@ -8,6 +8,10 @@ public abstract class Goal
     protected int _points;
     public bool completed;
 
+    public string goalName { get; internal set; }
+    public string description { get; internal set; }
+    public int points { get; internal set; }
+
     public Goal(string goalName, string description, int points)
     {
         _goalName = goalName;

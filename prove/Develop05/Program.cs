@@ -53,6 +53,7 @@ class Program
             }
         }
     }
+
     private static void ListGoals()
     {
         Console.WriteLine("Current Goals:");
@@ -79,18 +80,18 @@ class Program
         }
     }
 
-    public static void SaveGoals(object goalName, object description, object points)
+    public static void SaveGoals()
     {
         Console.WriteLine("Saving the goals...");
         string file = "goals.txt";
 
         using (StreamWriter writer = new StreamWriter(file))
         {
-            foreach (Goal goal in goals)
+            foreach (var goal in goals)
             {
-                writer.WriteLine($"Goal: {goalName}");
-                writer.WriteLine($"Description: {description}");
-                writer.WriteLine($"Points: {points}");
+                writer.WriteLine($"Goal: {goal.goalName}");
+                writer.WriteLine($"Description: {goal.description}");
+                writer.WriteLine($"Points: {goal.points}");
                 writer.WriteLine($"Completed Goals: {goal.completed}");
             }
         }
