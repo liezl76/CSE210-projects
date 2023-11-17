@@ -3,33 +3,36 @@ using System.Collections.Generic;
 
 public class ChecklistGoal : Goal
 {
-    public int _targetCount { get; set; }
-    public int _currentCount { get; set; }
+    public int _requiredTimes { get; set; }
+    public int _completedTimes { get; set; }
     public int _bonusPoints { get; set; }
 
-    public ChecklistGoal(string goalName, int goalType, string description, int points, int targetCount, int bonusPoints) : base(goalName, goalType, description, points)
+    public ChecklistGoal(string goalName, string description, int points, int requiredTimes, int completedTimes) : base(goalName, description, points)
     {
-        _targetCount = targetCount;
-        _bonusPoints = bonusPoints;
-        _currentCount = 0;
+        _requiredTimes = requiredTimes;
+        _completedTimes = completedTimes;
+        _bonusPoints = 0;
     }
 
-    public override int RecordEvent()
+    public override void ListGoals()
     {
-        Console.WriteLine("You recorded progress for the checklist goal: " + _goalName);
-        _currentCount++;
+        Console.WriteLine($"[{_completedTimes}/{_requiredTimes}] {_goalName} (Checklist)");
+    }
 
-        if (_currentCount == _targetCount)
+    public override void RecordEvent()
+    {
+        _completedTimes++;
+        Console.WriteLine($"Congratulations! You completed the goal '{_goalName}' ({_completedTimes}/{_requiredTimes}) and gained {_bonusPoints} points.");
+
+        if (_completedTimes == _requiredTimes)
         {
-            Console.WriteLine("Congratulations! You completed the checklist goal: " + _goalName);
-            return _points + _bonusPoints;
+            _bonusPoints += 500; // Bonus points for completing the goal
+            Console.WriteLine($"Congratulations! You achieved the required number of times for the goal '{_goalName}' and gained a bonus of 500 points.");
         }
-
-        return _points;
     }
 
     public override bool IsComplete()
     {
-        return _currentCount >= _targetCount;
+        return _completedTimes >= _requiredTimes;
     }
 }

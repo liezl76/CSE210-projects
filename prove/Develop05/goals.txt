@@ -1,3 +1,8 @@
-Goal: do ministering
-Description: go out do ministering once a week
+Goal: Ministering
+Goal: 1
+Description: do ministering at once a week
+Points: 50
+Goal: Read Scriptures
+Goal: 1
+Description: read scriptures at least 10 minutes a day
 Points: 50
