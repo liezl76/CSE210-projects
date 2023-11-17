@@ -1,8 +1,8 @@
-Goal: Ministering
-Goal: 1
-Description: do ministering at once a week
-Points: 50
 Goal: Read Scriptures
-Goal: 1
 Description: read scriptures at least 10 minutes a day
 Points: 50
+Completed Goals: False
+Goal: Temple Attendance
+Description: go to temple at least 3x a year
+Points: 100
+Completed Goals: False
