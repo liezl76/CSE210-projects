@@ -79,7 +79,7 @@ class Program
         }
     }
 
-    public static void SaveGoals()
+    public static void SaveGoals(object goalName, object description, object points)
     {
         Console.WriteLine("Saving the goals...");
         string file = "goals.txt";
@@ -88,9 +88,9 @@ class Program
         {
             foreach (Goal goal in goals)
             {
-                writer.WriteLine($"Goal: {goal._goalName}");
-                writer.WriteLine($"Description: {goal._description}");
-                writer.WriteLine($"Points: {goal._points}");
+                writer.WriteLine($"Goal: {goalName}");
+                writer.WriteLine($"Description: {description}");
+                writer.WriteLine($"Points: {points}");
                 writer.WriteLine($"Completed Goals: {goal.completed}");
             }
         }

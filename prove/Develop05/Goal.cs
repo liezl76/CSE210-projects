@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 public abstract class Goal
 {
-    public string _goalName;
-    public string _description;
-    public int _points;
+    protected string _goalName;
+    protected string _description;
+    protected int _points;
     public bool completed;
 
     public Goal(string goalName, string description, int points)
