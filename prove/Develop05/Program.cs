@@ -6,6 +6,7 @@ using System.IO;
 class Program
 {
     private static List<Goal> goals = new List<Goal>();
+    private int score = 0;
 
     public static void Main(string[] args)
     {
@@ -175,20 +176,23 @@ class Program
         Console.WriteLine("Goals saved successfully.");
     }
 
-    public static void RecordEvent()
+    public void RecordEvent()
     {
-        Console.WriteLine("Enter goal number to record event:");
-        int goalNumber = Convert.ToInt32(Console.ReadLine()) - 1;
+        Console.Write("Enter the name of the goal you completed: ");
+        string name = Console.ReadLine();
 
-        if (goalNumber >= 0 && goalNumber < goals.Count)
+        Goal goal = goals.Find(g => g._goalName.Equals(name, StringComparison.OrdinalIgnoreCase));
+
+        if (goal == null)
         {
-            Goal selectedGoal = goals[goalNumber];
-            int pointsEarned = selectedGoal.RecordEvent();
-            Console.WriteLine("Points earned: " + pointsEarned);
+            Console.WriteLine("Goal not found");
+            return;
         }
-        else
-        {
-            Console.WriteLine("Invalid goal number. Please try again.");
-        }
+
+        int pointsEarned = goal.RecordEvent();
+
+        score += pointsEarned;
+
+        Console.WriteLine("Event recorded successfully");
     }
 }
