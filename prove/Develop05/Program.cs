@@ -6,7 +6,7 @@ using System.IO;
 class Program
 {
     private static List<Goal> goals = new List<Goal>();
-    static int score = 0;
+    private static int score = 0;
 
     public static void Main(string[] args)
     {
@@ -59,11 +59,13 @@ class Program
     public static void CreateNewGoal()
     {
         Console.WriteLine("What type of goal would you like to create?");
+        int goalType = Convert.ToInt32(Console.ReadLine());
+
         Console.WriteLine("Select from the menu: ");
         Console.WriteLine("1. Simple Goal");
         Console.WriteLine("2. Eternal Goal");
         Console.WriteLine("3. Checklist Goal\n");
-        int goalType = Convert.ToInt32(Console.ReadLine());
+        int choice = Convert.ToInt32(Console.ReadLine());
 
         Console.WriteLine("What is the name of your goal?: ");
         string goalName = Console.ReadLine();
@@ -74,13 +76,13 @@ class Program
         Console.WriteLine("Enter goal points: ");
         int points = Convert.ToInt32(Console.ReadLine());
 
-        switch (goalType)
+        switch (choice)
         {
             case 1:
-                goals.Add(new SimpleGoal(goalName, description, points));
+                goals.Add(new SimpleGoal(goalName, goalType, description, points));
                 break;
             case 2:
-                goals.Add(new EternalGoal(goalName, description, points));
+                goals.Add(new EternalGoal(goalName, goalType, description, points));
                 break;
             case 3:
                 Console.WriteLine("Enter target count:");
@@ -89,7 +91,7 @@ class Program
                 Console.WriteLine("Enter bonus points:");
                 int bonusPoints = Convert.ToInt32(Console.ReadLine());
 
-                goals.Add(new ChecklistGoal(goalName, description, points, targetCount, bonusPoints));
+                goals.Add(new ChecklistGoal(goalName, goalType, description, points, targetCount, bonusPoints));
                 break;
             default:
                 Console.WriteLine("Invalid goal type. Please try again.");
@@ -141,12 +143,14 @@ class Program
                 while ((line = reader.ReadLine()) != null)
                 {
                     string goalName = line.Replace("Goal: ", "");
+                    int goalType = Convert.ToInt32(reader.ReadLine().Replace("Goal Type: ", ""));
                     string description = reader.ReadLine().Replace("Description: ", "");
                     int points = Convert.ToInt32(reader.ReadLine().Replace("Points: ", ""));
+                    int bonusPoints = Convert.ToInt32(reader.ReadLine().Replace("Bonus Points: ", ""));
 
 
-                    goals.Add(new SimpleGoal(goalName, description, points));
-                    goals.Add(new EternalGoal(goalName, description, points));
+                    goals.Add(new SimpleGoal(goalName, goalType, description, points));
+                    goals.Add(new EternalGoal(goalName, goalType, description, points));
                 }
             }
 
@@ -168,6 +172,7 @@ class Program
             foreach (Goal goal in goals)
             {
                 writer.WriteLine($"Goal: {goal._goalName}");
+                writer.WriteLine($"Goal: {goal._goalType}");
                 writer.WriteLine($"Description: {goal._description}");
                 writer.WriteLine($"Points: {goal._points}");
             }
