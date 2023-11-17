@@ -75,7 +75,22 @@ class Program
             Console.WriteLine("Invalid goal index. Please try again.");
         }
     }
+    public static void SaveGoals()
+    {
+        Console.WriteLine("Saving the goals...");
+        string file = "goals.txt";
 
+        using (StreamWriter writer = new StreamWriter(file))
+        {
+            foreach (Goal goal in goals)
+            {
+                writer.WriteLine($"Goal: {goal._goalName}");
+                writer.WriteLine($"Description: {goal._description}");
+                writer.WriteLine($"Points: {goal._points}");
+            }
+        }
+        Console.WriteLine("Goals saved successfully.");
+    }
     private static void LoadGoals()
     {
         Console.WriteLine("Enter the file path to load goals from: ");
