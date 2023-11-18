@@ -78,12 +78,14 @@ class Program
             Console.WriteLine("Invalid goal index. Please try again.");
         }
     }
+
     private static void SaveGoals()
     {
         using (StreamWriter writer = new StreamWriter(goalsFilePath))
         {
             foreach (var goal in goals)
             {
+                goal.completed = goal.IsComplete(); 
                 writer.WriteLine($"{goal.GetType().Name},{goal.goalName},{goal.description},{goal.points},{goal.completed}");
 
                 if (goal is ChecklistGoal checklistGoal)
@@ -141,7 +143,7 @@ class Program
                         continue;
                 }
 
-                goal.completed = completed;
+                goal.completed = completed; // Update the completed property
                 goals.Add(goal);
             }
         }
