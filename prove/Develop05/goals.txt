@@ -1,2 +1,0 @@
-SimpleGoal,,,0,True
-EternalGoal,,,0,False
