@@ -123,6 +123,9 @@ class Program
 
                 switch (goalType)
                 {
+                    case nameof(SimpleGoal):
+                        goal = new SimpleGoal(goalName, description, points);
+                        break;
                     case nameof(EternalGoal):
                         goal = new EternalGoal(goalName, description, points);
                         break;

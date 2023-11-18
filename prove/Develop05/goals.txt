@@ -1,5 +1,2 @@
-Goal: 
-Description: 
-Points: 0
-Completed: True
-
+SimpleGoal,,,0,False
+EternalGoal,,,0,False
