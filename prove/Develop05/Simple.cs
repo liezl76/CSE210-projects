@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 public class SimpleGoal : Goal
 {
-    public SimpleGoal(string goalName, string description, int points) : base(goalName, description, points)
+    public SimpleGoal(string goalName, int points) : base(goalName, points)
     {
     }
 
@@ -15,6 +16,6 @@ public class SimpleGoal : Goal
 
     public override void DisplayStatus()
     {
-        Console.WriteLine($"[{(completed ? 'X' : ' ')}] {_goalName}");
+        Console.WriteLine($"[{(completed ? 'X' : ' ')}] {_goalName} - {goalDescription}");
     }
 }

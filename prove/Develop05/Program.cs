@@ -2,25 +2,30 @@ using System;
 using System.Collections.Generic;
 using System.Formats.Asn1;
 using System.IO;
-using System.Text.Json.Serialization;
 
 class Program
 {
     private static List<Goal> goals = new List<Goal>();
     private static string goalsFilePath = "goals.txt";
-    public static void Main(string[] args)
+
+    public static void Main()
     {
+        LoadGoals();
+
         bool exitProgram = false;
+
         while (!exitProgram)
         {
             Console.WriteLine("\nMenu Options:");
             Console.WriteLine("1. Create new Goal");
             Console.WriteLine("2. List Goals");
-            Console.WriteLine("3. Load Goals");
-            Console.WriteLine("4. Save Goals");
-            Console.WriteLine("5. Record Event");
-            Console.WriteLine("6. Quit\n");
-            Console.WriteLine("Select a choice from the menu: ");
+            Console.WriteLine("3. Record Event");
+            Console.WriteLine("4. Display Score");
+            Console.WriteLine("5. Save Goals");
+            Console.WriteLine("6. Load Goals");
+            Console.WriteLine("7. Quit\n");
+
+            Console.Write("Select a choice from the menu: ");
             int choice = Convert.ToInt32(Console.ReadLine());
 
             switch (choice)
@@ -32,21 +37,25 @@ class Program
                     ListGoals();
                     break;
                 case 3:
-                    LoadGoals();
-                    break;
-                case 4:
-                    SaveGoals();
-                    break;
-                case 5:
                     RecordEvent();
                     break;
+                case 4:
+                    DisplayScore();
+                    break;
+                case 5:
+                    SaveGoals();
+                    break;
                 case 6:
+                    LoadGoals();
+                    break;
+                case 7:
                     exitProgram = true;
                     break;
                 default:
                     Console.WriteLine("Invalid choice. Please try again.");
                     break;
             }
+
             if (!exitProgram)
             {
                 Console.WriteLine("Press any key to continue....");
@@ -54,45 +63,45 @@ class Program
             }
         }
     }
+
     private static void CreateNewGoal()
+{
+    Console.WriteLine("What type of goal would you like to create?");
+    Console.WriteLine("1. Simple Goal");
+    Console.WriteLine("2. Eternal Goal");
+    Console.WriteLine("3. Checklist Goal");
+    Console.Write("Enter your choice: ");
+    int goalTypeChoice = Convert.ToInt32(Console.ReadLine());
+
+    Console.Write("What is the name of your goal?: ");
+    string goalName = Console.ReadLine();
+
+    Console.Write("Enter a description for your goal: ");
+    string goalDescription = Console.ReadLine();
+
+    Console.Write("Enter goal points: ");
+    int points = Convert.ToInt32(Console.ReadLine());
+
+    switch (goalTypeChoice)
     {
-        Console.WriteLine("What type of goal would you like to create?");
-        Console.WriteLine("1. Simple Goal");
-        Console.WriteLine("2. Eternal Goal");
-        Console.WriteLine("3. Checklist Goal");
-        Console.WriteLine("Enter your choice: ");
-        int choice = Convert.ToInt32(Console.ReadLine());
-
-        Console.WriteLine("What is the name of your goal?: ");
-        string goalName = Console.ReadLine();
-
-        Console.WriteLine("What is the short description of it?: ");
-        string description = Console.ReadLine();
-
-        Console.WriteLine("Enter goal points: ");
-        int points = Convert.ToInt32(Console.ReadLine());
-
-        //int completedTimes = 0;
-        switch (choice)
-        {
-            case 1:
-                goals.Add(new SimpleGoal (goalName, description, points));
-                break;
-            case 2:
-                goals.Add(new EternalGoal(goalName, description, points));
-                break;
-            case 3:
-                Console.WriteLine("Enter the required number of times for the goals: ");
-                int requiredTimes = Convert.ToInt32(Console.ReadLine());
-                goals.Add(new ChecklistGoal(goalName, description, points, requiredTimes));
-                break;
-            default:
-                Console.WriteLine("Invalid goal type. Please try again.");
-                break;
-        }
-        Console.WriteLine("Goal created successfully.");
-        Console.WriteLine();
+        case 1:
+            goals.Add(new SimpleGoal(goalName, points) {goalDescription = goalDescription});
+            break;
+        case 2:
+            goals.Add(new EternalGoal(goalName, points) { goalDescription = goalDescription });
+            break;
+        case 3:
+            Console.Write("Enter the required number of times for the goal: ");
+            int requiredTimes = Convert.ToInt32(Console.ReadLine());
+            goals.Add(new ChecklistGoal(goalName, points, requiredTimes) { goalDescription = goalDescription });
+            break;
+        default:
+            Console.WriteLine("Invalid goal type. Please try again.");
+            break;
     }
+
+    Console.WriteLine("Goal created successfully.");
+}
 
     private static void ListGoals()
     {
@@ -140,7 +149,7 @@ class Program
         {
             foreach (var goal in goals)
             {
-                writer.WriteLine($"{goal.GetType().Name},{goal.GoalName},{goal.Points},{goal.completed}");
+                writer.WriteLine($"{goal.GetType().Name},{goal.goalName},{goal.Points},{goal.completed}");
 
                 if (goal is ChecklistGoal checklistGoal)
                 {
@@ -189,8 +198,8 @@ class Program
                         int completedTimes = int.Parse(parts[5]);
                         int bonusPoints = int.Parse(parts[6]);
                         goal = new ChecklistGoal(goalName, points, requiredTimes);
-                        ((ChecklistGoal)goal).completedTimes = completedTimes;
-                        ((ChecklistGoal)goal).bonusPoints = bonusPoints;
+                        ((ChecklistGoal)goal)._completedTimes = completedTimes;
+                        ((ChecklistGoal)goal)._bonusPoints = bonusPoints;
                         break;
                     default:
                         Console.WriteLine($"Unknown goal type: {goalType}");

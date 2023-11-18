@@ -4,18 +4,17 @@ using System.Collections.Generic;
 public abstract class Goal
 {
     protected string _goalName;
-    protected string _description;
     protected int _points;
     public bool completed;
 
-    public string GoalName { get; internal set; }
+    public string goalName { get; internal set; }
+    public string goalDescription { get; internal set; }
 
     public int Points { get; internal set; }
 
-    public Goal(string goalName, string description, int points)
+    public Goal(string goalName, int points)
     {
         _goalName = goalName;
-        _description = description;
         _points = points;
         completed = false;
     }
