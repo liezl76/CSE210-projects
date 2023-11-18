@@ -52,7 +52,6 @@ class Program
             }
         }
     }
-
     private static void ListGoals()
     {
         Console.WriteLine("Current Goals:");
@@ -62,7 +61,6 @@ class Program
         }
         Console.WriteLine();
     }
-
     private static void RecordEvent()
     {
         Console.Write("Enter the index of the goal you completed: ");
