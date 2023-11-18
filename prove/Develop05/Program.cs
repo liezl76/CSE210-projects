@@ -6,7 +6,6 @@ using System.IO;
 class Program
 {
     private static List<Goal> goals = new List<Goal>();
-
     public static void Main(string[] args)
     {
         bool exitProgram = false;
@@ -79,7 +78,6 @@ class Program
             Console.WriteLine("Invalid goal index. Please try again.");
         }
     }
-
     public static void SaveGoals()
     {
         Console.WriteLine("Saving the goals...");
@@ -97,62 +95,48 @@ class Program
         }
         Console.WriteLine("Goals saved successfully.");
     }
-
-    private static void LoadGoals()
+    public static void LoadGoals()
     {
-        Console.WriteLine("Enter the file path to load goals from: ");
-        string filePath = Console.ReadLine();
+        Console.WriteLine("Loading the goals....");
+        string file = "goals.txt";
 
-        try
+        using (StreamReader reader = new StreamReader(file))
         {
-            string[] lines = File.ReadAllLines(filePath);
-
-            foreach (string line in lines)
+            while (reader.Peek() >= 0)
             {
-                string[] goalData = line.Split(';');
+                string goalName = reader.ReadLine()?.Substring(6);
+                string description = reader.ReadLine()?.Substring(13);
+                int points = Convert.ToInt32(reader.ReadLine()?.Substring(8));
+                bool completed = Convert.ToBoolean(reader.ReadLine()?.Substring(17));
 
-                if (goalData.Length >= 4)
+                // Create a new instance 
+                Goal goal;
+                if (goalName == "SimpleGoal")
                 {
-                    string goalType = goalData[0];
-                    string goalName = goalData[1];
-                    string description = goalData[2];
-                    int points = Convert.ToInt32(goalData[3]);
-
-                    switch (goalType)
-                    {
-                        case "SimpleGoal":
-                            goals.Add(new SimpleGoal(goalName, description, points));
-                            break;
-                        case "EternalGoal":
-                            goals.Add(new EternalGoal(goalName, description, points));
-                            break;
-                        case "ChecklistGoal":
-                            if (goalData.Length >= 5)
-                            {
-                                int requiredTimes = Convert.ToInt32(goalData[4]);
-                                int completedTimes = Convert.ToInt32(goalData[5]);
-                                goals.Add(new ChecklistGoal(goalName, description, points, requiredTimes, completedTimes));
-                            }
-                            break;
-                        default:
-                            Console.WriteLine("Invalid goal type: " + goalType);
-                            break;
-                    }
+                    goal = new SimpleGoal(goalName, description, points);
+                }
+                else if (goalName == "EternalGoal")
+                {
+                    goal = new EternalGoal(goalName, description, points);
+                }
+                else if (goalName == "ChecklistGoal")
+                {
+                    int requiredTimes = Convert.ToInt32(reader.ReadLine()?.Substring(21));
+                    int completedTimes = Convert.ToInt32(reader.ReadLine()?.Substring(18));
+                    goal = new ChecklistGoal(goalName, description, points, requiredTimes, completedTimes);
                 }
                 else
                 {
-                    Console.WriteLine("Invalid goal data: " + line);
+                    Console.WriteLine($"Invalid goal type: {goalName}. Skipping...");
+                    continue;
                 }
+
+                goal.completed = completed;
+                goals.Add(goal);
             }
-
-            Console.WriteLine("Goals loaded successfully.");
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Error loading goals: " + ex.Message);
-        }
+        Console.WriteLine("Goals loaded successfully.");
     }
-
     private static void CreateNewGoal()
     {
         Console.WriteLine("What type of goal would you like to create?");
@@ -189,7 +173,6 @@ class Program
                 Console.WriteLine("Invalid goal type. Please try again.");
                 break;
         }
-
         Console.WriteLine("Goal created successfully.");
         Console.WriteLine();
     }
