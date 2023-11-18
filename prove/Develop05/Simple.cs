@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class SimpleGoal : Goal
 {
-    public SimpleGoal(string goalName, int points) : base(goalName, points)
+    public SimpleGoal(string goalName, string description, int points) : base(goalName, description, points)
     {
     }
 

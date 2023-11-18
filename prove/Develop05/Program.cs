@@ -60,34 +60,38 @@ class Program
         Console.WriteLine("1. Simple Goal");
         Console.WriteLine("2. Eternal Goal");
         Console.WriteLine("3. Checklist Goal");
-        Console.Write("Enter your choice: ");
-        int goalTypeChoice = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Enter your choice: ");
+        int choice = Convert.ToInt32(Console.ReadLine());
 
-        Console.Write("What is the name of your goal?: ");
+        Console.WriteLine("What is the name of your goal?: ");
         string goalName = Console.ReadLine();
 
-        Console.Write("Enter goal points: ");
+        Console.WriteLine("What is the short description of it?: ");
+        string description = Console.ReadLine();
+
+        Console.WriteLine("Enter goal points: ");
         int points = Convert.ToInt32(Console.ReadLine());
 
-        switch (goalTypeChoice)
+        //int completedTimes = 0;
+        switch (choice)
         {
             case 1:
-                goals.Add(new SimpleGoal(goalName, points));
+                goals.Add(new SimpleGoal (goalName, description, points));
                 break;
             case 2:
-                goals.Add(new EternalGoal(goalName, points));
+                goals.Add(new EternalGoal(goalName, description, points));
                 break;
             case 3:
-                Console.Write("Enter the required number of times for the goal: ");
+                Console.WriteLine("Enter the required number of times for the goals: ");
                 int requiredTimes = Convert.ToInt32(Console.ReadLine());
-                goals.Add(new ChecklistGoal(goalName, points, requiredTimes));
+                goals.Add(new ChecklistGoal(goalName, description, points, requiredTimes));
                 break;
             default:
                 Console.WriteLine("Invalid goal type. Please try again.");
                 break;
         }
-
         Console.WriteLine("Goal created successfully.");
+        Console.WriteLine();
     }
 
     private static void ListGoals()

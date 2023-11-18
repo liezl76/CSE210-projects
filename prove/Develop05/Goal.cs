@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public abstract class Goal
 {
     protected string _goalName;
+    protected string _description;
     protected int _points;
     public bool completed;
 
@@ -11,9 +12,10 @@ public abstract class Goal
 
     public int Points { get; internal set; }
 
-    public Goal(string goalName, int points)
+    public Goal(string goalName, string description, int points)
     {
         _goalName = goalName;
+        _description = description;
         _points = points;
         completed = false;
     }
