@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Formats.Asn1;
 using System.IO;
+using System.Text.Json.Serialization;
 
 class Program
 {
     private static List<Goal> goals = new List<Goal>();
+    private static string goalsFilePath = "goals.txt";
     public static void Main(string[] args)
     {
         bool exitProgram = false;
@@ -76,68 +78,71 @@ class Program
             Console.WriteLine("Invalid goal index. Please try again.");
         }
     }
-    public static void SaveGoals()
+    private static void SaveGoals()
     {
-        Console.WriteLine("Saving the goals...");
-        string file = "goals.txt";
-
-        using (StreamWriter writer = new StreamWriter(file))
+        using (StreamWriter writer = new StreamWriter(goalsFilePath))
         {
             foreach (var goal in goals)
             {
-                writer.WriteLine($"Goal: {goal.goalName}");
-                writer.WriteLine($"Description: {goal.description}");
-                writer.WriteLine($"Points: {goal.points}");
-                writer.WriteLine($"Completed: {goal.IsComplete()}");
-                writer.WriteLine(); // Add an empty line between goals
+                writer.WriteLine($"{goal.GetType().Name},{goal.goalName},{goal.description},{goal.points},{goal.completed}");
+
+                if (goal is ChecklistGoal checklistGoal)
+                {
+                    writer.WriteLine($"{checklistGoal._requiredTimes},{checklistGoal._completedTimes},{checklistGoal._bonusPoints}");
+                }
             }
         }
+
         Console.WriteLine("Goals saved successfully.");
     }
 
-    public static void LoadGoals()
+    private static void LoadGoals()
     {
-        Console.WriteLine("Loading the goals....");
-        string file = "goals.txt";
-
-        using (StreamReader reader = new StreamReader(file))
+        if (!File.Exists(goalsFilePath))
         {
-            while (reader.Peek() >= 0)
-            {
-                string goalName = reader.ReadLine()?.Substring(6);
-                string description = reader.ReadLine()?.Substring(13);
-                int points = Convert.ToInt32(reader.ReadLine()?.Substring(8));
-                bool completed = Convert.ToBoolean(reader.ReadLine()?.Substring(11));
+            Console.WriteLine("No saved goals found.");
+            return;
+        }
 
-                // Create a new instance 
+        goals.Clear();
+
+        using (StreamReader reader = new StreamReader(goalsFilePath))
+        {
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                string[] parts = line.Split(',');
+
+                string goalType = parts[0];
+                string goalName = parts[1];
+                string description = parts[2];
+                int points = int.Parse(parts[3]);
+                bool completed = bool.Parse(parts[4]);
+
                 Goal goal;
-                if (goalName == "SimpleGoal")
+
+                switch (goalType)
                 {
-                    goal = new SimpleGoal(goalName, description, points);
-                }
-                else if (goalName == "EternalGoal")
-                {
-                    goal = new EternalGoal(goalName, description, points);
-                }
-                else if (goalName == "ChecklistGoal")
-                {
-                    int requiredTimes = Convert.ToInt32(reader.ReadLine()?.Substring(21));
-                    int completedTimes = Convert.ToInt32(reader.ReadLine()?.Substring(18));
-                    goal = new ChecklistGoal(goalName, description, points, requiredTimes, completedTimes);
-                }
-                else
-                {
-                    Console.WriteLine($"Invalid goal type: {goalName}. Skipping...");
-                    continue;
+                    case nameof(EternalGoal):
+                        goal = new EternalGoal(goalName, description, points);
+                        break;
+                    case nameof(ChecklistGoal):
+                        int requiredTimes = int.Parse(parts[5]);
+                        int completedTimes = int.Parse(parts[6]);
+                        int bonusPoints = int.Parse(parts[7]);
+                        goal = new ChecklistGoal(goalName, description, points, requiredTimes, completedTimes);
+                        ((ChecklistGoal)goal)._bonusPoints = bonusPoints;
+                        break;
+                    default:
+                        Console.WriteLine($"Unknown goal type: {goalType}");
+                        continue;
                 }
 
                 goal.completed = completed;
                 goals.Add(goal);
-
-                // Skip the empty line between goals
-                reader.ReadLine();
             }
         }
+
         Console.WriteLine("Goals loaded successfully.");
     }
 

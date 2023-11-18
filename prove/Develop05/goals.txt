@@ -1,8 +1,5 @@
 Goal: 
 Description: 
 Points: 0
-Completed Goals: False
-Goal: 
-Description: 
-Points: 0
-Completed Goals: False
+Completed: True
+
