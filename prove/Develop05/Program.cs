@@ -88,11 +88,13 @@ class Program
                 writer.WriteLine($"Goal: {goal.goalName}");
                 writer.WriteLine($"Description: {goal.description}");
                 writer.WriteLine($"Points: {goal.points}");
-                writer.WriteLine($"Completed Goals: {goal.completed}");
+                writer.WriteLine($"Completed: {goal.IsComplete()}");
+                writer.WriteLine(); // Add an empty line between goals
             }
         }
         Console.WriteLine("Goals saved successfully.");
     }
+
     public static void LoadGoals()
     {
         Console.WriteLine("Loading the goals....");
@@ -105,7 +107,7 @@ class Program
                 string goalName = reader.ReadLine()?.Substring(6);
                 string description = reader.ReadLine()?.Substring(13);
                 int points = Convert.ToInt32(reader.ReadLine()?.Substring(8));
-                bool completed = Convert.ToBoolean(reader.ReadLine()?.Substring(17));
+                bool completed = Convert.ToBoolean(reader.ReadLine()?.Substring(11));
 
                 // Create a new instance 
                 Goal goal;
@@ -131,10 +133,14 @@ class Program
 
                 goal.completed = completed;
                 goals.Add(goal);
+
+                // Skip the empty line between goals
+                reader.ReadLine();
             }
         }
         Console.WriteLine("Goals loaded successfully.");
     }
+
     private static void CreateNewGoal()
     {
         Console.WriteLine("What type of goal would you like to create?");
