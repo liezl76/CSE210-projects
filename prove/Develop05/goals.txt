@@ -1,4 +1,1 @@
-SimpleGoal,,0,True
-EternalGoal,,0,False
-ChecklistGoal,,0,False
-0,0,0
+
