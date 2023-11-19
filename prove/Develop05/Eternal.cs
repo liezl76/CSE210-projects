@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class EternalGoal : Goal
 {
-    public EternalGoal(string goalName, int points) : base(goalName, points)
+    public EternalGoal(string goalName, string goalDescription, int points) : base(goalName, goalDescription, points)
     {
     }
 

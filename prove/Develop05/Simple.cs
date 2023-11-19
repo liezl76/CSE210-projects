@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 public class SimpleGoal : Goal
 {
-    public SimpleGoal(string goalName, int points) : base(goalName, points)
+    public SimpleGoal(string goalName, string goalDescription, int points) : base(goalName, goalDescription, points)
     {
     }
 
