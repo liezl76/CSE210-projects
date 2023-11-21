@@ -4,47 +4,51 @@ using System.Threading;
 
 public class Activity
 {
-    private string _description;
-    private string _activityName;
+    protected string _description;
+    protected string _activityName;
     protected int _duration;
-    public Activity(string description, string activityName, int duration)
+
+    public Activity(string activityName, string description)
     {
-        _description = description;
         _activityName = activityName;
-        _duration = duration;
+        _description = description;
     }
+
     public void Start()
     {
-        //Starting message
+        DisplayStartingMessage();
+        PerformActivity();
+        DisplayEndingMessage();
+    }
+
+    protected void DisplayStartingMessage()
+    {
         Console.WriteLine($"Starting {_activityName} activity...");
         Console.WriteLine(_description);
         Console.WriteLine("Prepare to begin....\n");
-
-        //Pause for several seconds before finishing
         Pause(2);
+    }
 
-        // Specific activity behavior implemented in derived classes
-        PerformActivity();
+    protected virtual void PerformActivity()
+    {
+        // Default implementation, to be overridden by derived classes
+    }
 
-        // Common ending message
+    protected void DisplayEndingMessage()
+    {
         Console.WriteLine("\nGood job!");
         Console.WriteLine($"You have completed the {_activityName} activity.");
         Console.WriteLine($"Total duration: {_duration} seconds\n");
-
-        // Pause for several seconds before finishing
         Pause(3);
     }
-    protected virtual void PerformActivity()
-    {
-        //This method will be overridden in derived classess
-    }
+
     protected void Pause(int seconds)
     {
         Console.WriteLine("Pausing...");
         for (int i = seconds; i > 0; i--)
         {
             Console.WriteLine(i);
-            System.Threading.Thread.Sleep(2000); //Pause for 2 seconds
+            System.Threading.Thread.Sleep(2000); // Pause for 2 second
         }
         Console.WriteLine();
     }

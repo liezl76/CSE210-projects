@@ -1,32 +1,44 @@
 using System;
+using System.Collections.Generic;
+using System.Threading;
 
 public class BreathingActivity : Activity
 {
-    private string _breathInMessage;
-    private string _breathOutMessage;
-    public BreathingActivity(string activityName, string description, int duration, string breathInMessage, string breathOutMessage) 
-    : base(description, activityName, duration)
+    private const int AnimationDuration = 1000; // Animation duration in milliseconds
+
+    public BreathingActivity() : base("Breathing Activity", "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.")
     {
-        _breathInMessage = breathInMessage;
-        _breathOutMessage = breathOutMessage;
     }
+
     protected override void PerformActivity()
     {
-        // Prompt the user to input the duration in seconds
-        Console.Write("Enter the duration(in seconds): ");
-        int durationInSeconds = Convert.ToInt32(Console.ReadLine());
-        // Calculate the duration in milliseconds
-        int durationInMilliseconds = durationInSeconds * 1000;
-        // Get the start time of the loop
-        DateTime startTime = DateTime.Now;
-        // Continue the loop until the desired duration has elapsed
-        while (DateTime.Now - startTime < TimeSpan.FromMilliseconds(durationInMilliseconds))
+        Console.Write("Enter the duration (in seconds): ");
+        _duration = Convert.ToInt32(Console.ReadLine());
+
+        int cycles = _duration / 2; // Each cycle includes a breath in and a breath out
+
+        for (int i = 0; i < cycles; i++)
         {
-            Console.WriteLine(_breathInMessage);
-            Pause(2);
-            
-            Console.WriteLine(_breathOutMessage);
-            Pause(2);
+            Console.WriteLine("Breathing in...");
+            AnimateSpinner();
+            Pause(1); // Pause for 1 second
+
+            Console.WriteLine("Breathing out...");
+            AnimateSpinner();
+            Pause(1); // Pause for 1 second
         }
+    }
+    private void AnimateSpinner()
+    {
+        char[] spinner = { '|', '/', '-', '\\' };
+
+        for (int i = 0; i < 10; i++)
+        {
+            Console.Write(spinner[i % 4] + " ");
+            Thread.Sleep(1000); // Pause for 1 seconds
+            Console.SetCursorPosition(Console.CursorLeft - 2, Console.CursorTop);
+        }
+
+        Console.WriteLine();
     }
 }

@@ -1,0 +1,2 @@
+SimpleGoal,Read Scripture,50,False
+EternalGoal,Temple Attendance,100,False
