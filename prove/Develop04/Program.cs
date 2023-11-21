@@ -40,7 +40,6 @@ class Program
                     Console.WriteLine("Invalid choice. Please try again.\n");
                     break;
             }
-
             if (!exitProgram)
             {
                 Console.WriteLine("Press any key to continue....");

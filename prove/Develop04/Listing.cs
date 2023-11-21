@@ -10,6 +10,7 @@ public class ListingActivity : Activity
     public ListingActivity() : base("Listing Activity", "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.")
     {
         _prompts = new List<string>
+        
         {
             "Who are people that you appreciate?",
             "What are personal strengths of yours?",
@@ -63,8 +64,6 @@ public class ListingActivity : Activity
             Thread.Sleep(1000); // Pause for 1 seconds
             Console.SetCursorPosition(Console.CursorLeft - 2, Console.CursorTop);
         }
-
         Console.WriteLine();
-    }
     }
 }

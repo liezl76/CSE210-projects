@@ -17,7 +17,6 @@ public class ReflectionActivity : Activity
             "Think of a time when you helped someone in need.",
             "Think of a time when you did something truly selfless."
         };
-
         _questions = new List<string>
         {
             "Why was this experience meaningful to you?",
@@ -55,7 +54,6 @@ public class ReflectionActivity : Activity
             }
         }
     }
-
     private void AnimateSpinner()
     {
         char[] spinner = { '|', '/', '-', '\\' };
