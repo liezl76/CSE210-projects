@@ -64,7 +64,6 @@ public class ReflectionActivity : Activity
             Thread.Sleep(1000); // Pause for 1 seconds
             Console.SetCursorPosition(Console.CursorLeft - 2, Console.CursorTop);
         }
-
         Console.WriteLine();
     }
 }

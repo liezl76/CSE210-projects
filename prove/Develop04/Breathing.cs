@@ -4,7 +4,7 @@ using System.Threading;
 
 public class BreathingActivity : Activity
 {
-    //private const int AnimationDuration = 1000; // Animation duration in milliseconds
+    private const int AnimationDuration = 1000; // Animation duration in milliseconds
 
     public BreathingActivity() : base("Breathing Activity", "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.")
     {
@@ -20,25 +20,26 @@ public class BreathingActivity : Activity
         for (int i = 0; i < cycles; i++)
         {
             Console.WriteLine("Breathing in...");
-            AnimateSpinner();
-            Console.WriteLine();
+            AnimateBreath();
+            Pause(1); // Pause for 1 second
 
             Console.WriteLine("Breathing out...");
-            AnimateSpinner();
-            Console.WriteLine();
+            AnimateBreath();
+            Pause(1); // Pause for 1 second
         }
     }
-    private void AnimateSpinner()
-    {
-        char[] spinner = { '|', '/', '-', '\\' };
 
-        for (int i = 0; i < 5; i++)
+    private void AnimateBreath()
+    {
+        Console.Write("[");
+
+        // Simulate breathing in/out animation
+        for (int i = 0; i < 15; i++)
         {
-            Console.Write(spinner[i % 4] + " ");
-            Thread.Sleep(1000); // Pause for 1 second
-            Console.SetCursorPosition(Console.CursorLeft - 2, Console.CursorTop);
+            Console.Write("=");
+            Thread.Sleep(AnimationDuration / 15);
         }
 
-        Console.WriteLine();
+        Console.WriteLine("]");
     }
 }

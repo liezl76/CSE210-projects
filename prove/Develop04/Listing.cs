@@ -34,7 +34,7 @@ public class ListingActivity : Activity
         {
             string prompt = _prompts[random.Next(_prompts.Count)];
             Console.WriteLine($"Prompt: {prompt}");
-            AnimateSpinner();
+            AnimateBouncingBall();
             elapsedTime += 2;
 
             Console.WriteLine("Start Listing Items:");
@@ -50,20 +50,25 @@ public class ListingActivity : Activity
                 count++;
             }
             Console.WriteLine($"Total items listed: {count}");
-            AnimateSpinner();
+            AnimateBouncingBall();
             elapsedTime += 2;
         }
     }
-    private void AnimateSpinner()
+    private void AnimateBouncingBall()
     {
-        char[] spinner = { '|', '/', '-', '\\' };
+        int left = Console.CursorLeft;
+        int top = Console.CursorTop;
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 5; i++)
         {
-            Console.Write(spinner[i % 4] + " ");
+            Console.Write("o");
             Thread.Sleep(1000); // Pause for 1 seconds
-            Console.SetCursorPosition(Console.CursorLeft - 2, Console.CursorTop);
+            Console.SetCursorPosition(left, top);
+            Console.Write(" ");
+            Console.SetCursorPosition(left, top);
+            Thread.Sleep(1000); // Pause for 1 seconds
         }
+
         Console.WriteLine();
     }
 }
