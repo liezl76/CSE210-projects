@@ -61,7 +61,7 @@ public class ListingActivity : Activity
 
         for (int i = 0; i < 5; i++)
         {
-            Console.Write("o");
+            Console.Write("O");
             Thread.Sleep(1000); // Pause for 1 second
             Console.SetCursorPosition(left, top);
             Console.Write(" ");
