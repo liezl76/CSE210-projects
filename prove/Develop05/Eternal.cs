@@ -16,4 +16,8 @@ public class EternalGoal : Goal
     {
         Console.WriteLine($"[ ] {_goalName} (Eternal) - {goalDescription}");
     }
+    public override string Display()
+    {
+        return $"Eternal goal: {_goalName}, {goalDescription},{points}";
+    }
 }

@@ -27,4 +27,6 @@ public abstract class Goal
 
     // Abstract method for displaying the goal's status
     public abstract void DisplayStatus();
+
+    public abstract string Display();
 }

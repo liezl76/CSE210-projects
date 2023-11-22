@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Formats.Asn1;
 using System.IO;
 
 class Program
 {
     private static List<Goal> goals = new List<Goal>();
     private static int score = 0;
-    private static string goalsFilePath = "goals.txt";
 
     public static void Main(string[] args)
     {
@@ -141,31 +139,65 @@ class Program
 
     private static void SaveGoals()
     {
-        using (StreamWriter writer = new StreamWriter(goalsFilePath))
+        using (StreamWriter writer = new StreamWriter("goals.txt"))
         {
             foreach (var goal in goals)
             {
-                writer.WriteLine($"{goal.GetType().Name},{goal.goalName},{goal.points},{goal.completed}");
-
-                if (goal is ChecklistGoal checklistGoal)
-                {
-                    writer.WriteLine($"{checklistGoal.requiredTimes},{checklistGoal.completedTimes},{checklistGoal.bonusPoints}");
-                }
+                writer.WriteLine(goal.Display());
             }
         }
 
-        Console.WriteLine("Goals saved successfully.");
+        Console.WriteLine("Goals saved to goals.txt");
     }
+
     private static void LoadGoals()
     {
-        SimpleGoal goal1 = new SimpleGoal("Run a marathon", "Simple", 1000);
-        EternalGoal goal2 = new EternalGoal("Read scriptures", "Eternal", 100);
-        ChecklistGoal goal3 = new ChecklistGoal("Learn a new language", "Checklist", 200, 5);
+        if (File.Exists("goals.txt"))
+        {
+            using (StreamReader reader = new StreamReader("goals.txt"))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    string[] parts = line.Split(':');
+                    if (parts.Length >= 2)
+                    {
+                        string type = parts[0].Trim();
+                        string[] goalParts = parts[1].Split(',');
 
-        goals.Add(goal1);
-        goals.Add(goal2);
-        goals.Add(goal3);
+                        if (goalParts.Length >= 3)
+                        {
+                            string name = goalParts[0].Trim();
+                            string description = goalParts[1].Trim();
+                            int points = int.Parse(goalParts[2].Trim());
 
-        score = 0;
+                            switch (type)
+                            {
+                                case "Simple goal":
+                                    goals.Add(new SimpleGoal(name, description, points));
+                                    break;
+                                case "Eternal goal":
+                                    goals.Add(new EternalGoal(name, description, points));
+                                    break;
+                                case "Checklist goal":
+                                    if (goalParts.Length >= 5)
+                                    {
+                                        int totalTimes = int.Parse(goalParts[3].Trim());
+                                        int bonus = int.Parse(goalParts[4].Trim());
+                                        goals.Add(new ChecklistGoal(name, description, points, totalTimes, bonus));
+                                    }
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            Console.WriteLine("Goals loaded from goals.txt");
+        }
+        else
+        {
+            Console.WriteLine("No goals file found.");
+        }
     }
 }

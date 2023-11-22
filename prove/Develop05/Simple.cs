@@ -18,4 +18,8 @@ public class SimpleGoal : Goal
     {
         Console.WriteLine($"[{(completed ? 'X' : ' ')}] {_goalName} - {goalDescription}");
     }
+    public override string Display()
+    {
+        return $"Simple goal: {goalName}, {goalDescription},{points}";
+    }
 }

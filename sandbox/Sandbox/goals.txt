@@ -1,0 +1,3 @@
+Simple goal: read, read,30
+Eternal goal: talk, talk,50
+Checklist goal: temple, temple,100,0/3

@@ -11,7 +11,7 @@ public class ChecklistGoal : Goal
     public int completedTimes { get; internal set; }
     public int bonusPoints { get; internal set; }
 
-    public ChecklistGoal(string goalName, string goalDescription, int points, int requiredTimes) : base(goalName, goalDescription, points)
+    public ChecklistGoal(string goalName, string goalDescription, int points, int requiredTimes, int bonusPoints) : base(goalName, goalDescription, points)
     {
         _requiredTimes = requiredTimes;
         _completedTimes = 0;
@@ -32,5 +32,9 @@ public class ChecklistGoal : Goal
     public override void DisplayStatus()
     {
         Console.WriteLine($"[Completed {_completedTimes}/{_requiredTimes}] {_goalName} (Checklist) - {goalDescription}");
+    }
+    public override string Display()
+    {
+        return $"Checklist goal: {goalName}, {goalDescription},{points},{_completedTimes}/{requiredTimes}";
     }
 }
