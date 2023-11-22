@@ -15,7 +15,7 @@ public class BreathingActivity : Activity
         Console.Write("Enter the duration (in seconds): ");
         _duration = Convert.ToInt32(Console.ReadLine());
 
-        int cycles = _duration / 2; // Each cycle includes a breath in and a breath out
+        int cycles = _duration / 2; // Cycle includes a breath in and a breath out
 
         for (int i = 0; i < cycles; i++)
         {
@@ -33,7 +33,7 @@ public class BreathingActivity : Activity
     {
         Console.Write("[");
 
-        // Simulate breathing in/out animation
+        // Breathing in/out animation
         for (int i = 0; i < 15; i++)
         {
             Console.Write("=");

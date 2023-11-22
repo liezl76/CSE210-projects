@@ -31,7 +31,7 @@ public class Activity
 
     protected virtual void PerformActivity()
     {
-        // Default implementation, to be overridden by derived classes
+        // Implementation, to be overridden by derived classes
     }
 
     protected void DisplayEndingMessage()
