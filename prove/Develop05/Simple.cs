@@ -8,18 +8,13 @@ public class SimpleGoal : Goal
     {
     }
 
-    public override void RecordEvent()
+    public override string Display()
     {
-        Console.WriteLine($"Congratulations! You completed the goal '{_goalName}' and gained {_points} points.");
-        completed = true;
+        return $"Simple goal: {goalName}, {goalDescription}, {points}, {(completed ? "Completed" : "Not Completed")}";
     }
 
     public override void DisplayStatus()
     {
-        Console.WriteLine($"[{(completed ? 'X' : ' ')}] {_goalName} - {goalDescription}");
-    }
-    public override string Display()
-    {
-        return $"Simple goal: {goalName}, {goalDescription},{points}";
+        Console.WriteLine($"[{(completed ? 'X' : ' ')}] {goalName} - {goalDescription}");
     }
 }

@@ -5,7 +5,6 @@ using System.IO;
 class Program
 {
     private static List<Goal> goals = new List<Goal>();
-    private static int score = 0;
 
     public static void Main(string[] args)
     {
@@ -58,6 +57,7 @@ class Program
             }
         }
     }
+
     private static void CreateNewGoal()
     {
         Console.WriteLine("What type of goal would you like to create?");
@@ -87,7 +87,9 @@ class Program
             case 3:
                 Console.Write("Enter the required number of times for the goal: ");
                 int requiredTimes = Convert.ToInt32(Console.ReadLine());
-                goals.Add(new ChecklistGoal(goalName, goalDescription, points, requiredTimes));
+                Console.WriteLine("Enter bonus points");
+                int bonusPoints = Convert.ToInt32(Console.ReadLine());
+                goals.Add(new ChecklistGoal(goalName, goalDescription, points, requiredTimes, bonusPoints));
                 break;
             default:
                 Console.WriteLine("Invalid goal type. Please try again.");
@@ -103,6 +105,7 @@ class Program
         foreach (var goal in goals)
         {
             goal.DisplayStatus();
+            DisplayScore();
         }
         Console.WriteLine();
     }
@@ -143,7 +146,7 @@ class Program
         {
             foreach (var goal in goals)
             {
-                writer.WriteLine(goal.Display());
+                writer.WriteLine(goal.GetStringRepresentation());
             }
         }
 
@@ -152,52 +155,32 @@ class Program
 
     private static void LoadGoals()
     {
-        if (File.Exists("goals.txt"))
+        string filename = "goals.txt";
+
+        if (File.Exists(filename))
         {
-            using (StreamReader reader = new StreamReader("goals.txt"))
+            string[] lines = File.ReadAllLines(filename);
+
+            foreach (string line in lines)
             {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    string[] parts = line.Split(':');
-                    if (parts.Length >= 2)
-                    {
-                        string type = parts[0].Trim();
-                        string[] goalParts = parts[1].Split(',');
-
-                        if (goalParts.Length >= 3)
-                        {
-                            string name = goalParts[0].Trim();
-                            string description = goalParts[1].Trim();
-                            int points = int.Parse(goalParts[2].Trim());
-
-                            switch (type)
-                            {
-                                case "Simple goal":
-                                    goals.Add(new SimpleGoal(name, description, points));
-                                    break;
-                                case "Eternal goal":
-                                    goals.Add(new EternalGoal(name, description, points));
-                                    break;
-                                case "Checklist goal":
-                                    if (goalParts.Length >= 5)
-                                    {
-                                        int totalTimes = int.Parse(goalParts[3].Trim());
-                                        int bonus = int.Parse(goalParts[4].Trim());
-                                        goals.Add(new ChecklistGoal(name, description, points, totalTimes, bonus));
-                                    }
-                                    break;
-                            }
-                        }
-                    }
-                }
+                Goal goal = Goal.CreateGoal(line);
+                goals.Add(goal);
             }
 
-            Console.WriteLine("Goals loaded from goals.txt");
+            DisplayLoadedGoals();
         }
         else
         {
             Console.WriteLine("No goals file found.");
+        }
+    }
+
+    private static void DisplayLoadedGoals()
+    {
+        Console.WriteLine("Loaded Goals:");
+        foreach (var goal in goals)
+        {
+            Console.WriteLine(goal.Display());
         }
     }
 }

@@ -6,18 +6,14 @@ public class EternalGoal : Goal
     public EternalGoal(string goalName, string goalDescription, int points) : base(goalName, goalDescription, points)
     {
     }
-    
-    public override void RecordEvent()
+
+    public override string Display()
     {
-        Console.WriteLine($"Congratulations! You earned {_points} points for the eternal goal '{_goalName}'.");
+        return $"Eternal goal: {goalName}, {goalDescription}, {points}, {(completed ? "Completed" : "Not Completed")}";
     }
 
     public override void DisplayStatus()
     {
-        Console.WriteLine($"[ ] {_goalName} (Eternal) - {goalDescription}");
-    }
-    public override string Display()
-    {
-        return $"Eternal goal: {_goalName}, {goalDescription},{points}";
+        Console.WriteLine($"[{(completed ? 'X' : ' ')}] {goalName} (Eternal) - {goalDescription}");
     }
 }
