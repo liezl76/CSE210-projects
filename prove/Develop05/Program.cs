@@ -8,12 +8,11 @@ class Program
 
     public static void Main(string[] args)
     {
-        DisplayScore();
-
         bool exitProgram = false;
 
         while (!exitProgram)
         {
+            DisplayScore();
             Console.WriteLine("\nMenu Options:");
             Console.WriteLine("1. Create new Goal");
             Console.WriteLine("2. List Goals");
@@ -52,6 +51,7 @@ class Program
 
             if (!exitProgram)
             {
+                Console.WriteLine();
                 Console.WriteLine("Press any key to continue....");
                 Console.ReadKey();
             }
@@ -105,7 +105,6 @@ class Program
         foreach (var goal in goals)
         {
             goal.DisplayStatus();
-            DisplayScore();
         }
         Console.WriteLine();
     }
