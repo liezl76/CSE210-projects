@@ -221,7 +221,9 @@ class Program
             case 3:
                 Console.Write("Enter the required number of times for the goal: ");
                 int requiredTimes = Convert.ToInt32(Console.ReadLine());
-                goals.Add(new ChecklistGoal(goalName, goalDescription, points, requiredTimes));
+                Console.WriteLine("Enter bonus points");
+                int bonusPoints = Convert.ToInt32(Console.ReadLine());
+                goals.Add(new ChecklistGoal(goalName, goalDescription, points, requiredTimes, bonusPoints));
                 break;
             default:
                 Console.WriteLine("Invalid goal type. Please try again.");
