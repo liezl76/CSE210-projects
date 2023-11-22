@@ -7,7 +7,7 @@ public class ListingActivity : Activity
     private List<string> _prompts;
     private List<string> _items;
 
-    public ListingActivity() : base("Listing Activity", "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.")
+    public ListingActivity() : base("Listing", "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.")
     {
         _prompts = new List<string>
         
@@ -62,13 +62,12 @@ public class ListingActivity : Activity
         for (int i = 0; i < 5; i++)
         {
             Console.Write("o");
-            Thread.Sleep(1000); // Pause for 1 seconds
+            Thread.Sleep(1000); // Pause for 1 second
             Console.SetCursorPosition(left, top);
             Console.Write(" ");
             Console.SetCursorPosition(left, top);
-            Thread.Sleep(1000); // Pause for 1 seconds
+            Thread.Sleep(1000); // Pause for 1 second
         }
-
         Console.WriteLine();
     }
 }

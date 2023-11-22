@@ -4,9 +4,9 @@ using System.Threading;
 
 public class BreathingActivity : Activity
 {
-    private const int AnimationDuration = 2000; // Animation duration in milliseconds
+    private const int AnimationDuration = 1000; // Animation duration in milliseconds
 
-    public BreathingActivity() : base("Breathing Activity", "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.")
+    public BreathingActivity() : base("Breathing", "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.")
     {
     }
 

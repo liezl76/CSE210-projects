@@ -5,11 +5,12 @@ class Program
 {
     public static void Main(string[] args)
     {
+        Console.WriteLine();
+        DisplayWelcomeMessage();
+
         bool exitProgram = false;
         while (!exitProgram)
         {
-            Console.Clear();
-            Console.WriteLine("Welcome to the Mindfulness Program!");
             Console.WriteLine("\nMenu Options:");
             Console.WriteLine("1. Breathing Activity");
             Console.WriteLine("2. Reflection Activity");
@@ -46,5 +47,9 @@ class Program
                 Console.ReadKey();
             }
         }
+    }
+    public static void DisplayWelcomeMessage()
+    {
+        Console.WriteLine("Welcome to the Mindfulness Program!");
     }
 }
