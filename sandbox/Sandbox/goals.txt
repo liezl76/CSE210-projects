@@ -1,3 +1,0 @@
-SimpleGoal:read,read,30,True
-SimpleGoal:2,talk,50,True
-ChecklistGoal:temple,temple,100,False
