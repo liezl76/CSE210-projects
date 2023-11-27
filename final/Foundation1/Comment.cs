@@ -3,13 +3,12 @@ using System.Collections.Generic;
 
 public class Comment
 {
-    public string _commenterName { get; set;}
-    public string _commenterTxt { get; set;}
+    public string _commenterName { get; set; }
+    public string _commentertext { get; set; }
 
-    public Comment(string commenterName, string commenterTxt)
+    public Comment(string commenterName, string commentertext)
     {
         _commenterName = commenterName;
-        _commenterTxt = commenterTxt;
+        _commentertext = commentertext;
     }
-
 }
