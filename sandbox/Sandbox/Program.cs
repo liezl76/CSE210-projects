@@ -100,78 +100,78 @@ public class Order
 
 public class Product
 {
-    private string name;
-    private string productId;
-    private decimal price;
-    private int quantity;
+    private string _name;
+    private string _productId;
+    private decimal _price;
+    private int _quantity;
 
     public Product(string name, string productId, decimal price, int quantity)
     {
-        this.name = name;
-        this.productId = productId;
-        this.price = price;
-        this.quantity = quantity;
+        this._name = name;
+        this._productId = productId;
+        this._price = price;
+        this._quantity = quantity;
     }
 
     public decimal GetTotalPrice()
     {
         //Calculate the total price for a specific product
-        return price * quantity;
+        return _price * _quantity;
     }
 
-    public string Name { get { return name; } }
-    public string ProductId { get { return productId; } }
+    public string Name { get { return _name; } }
+    public string ProductId { get { return _productId; } }
 }
 
 public class Customer
 {
-    private string name;
-    private Address address;
+    private string _name;
+    private Address _address;
 
     public Customer(string name, Address address)
     {
-        this.name = name;
-        this.address = address;
+        this._name = name;
+        this._address = address;
     }
 
     public bool IsUsaCustomer()
     {
-        return address.IsUsaAddress();
+        return _address.IsUsaAddress();
     }
 
-    public string Name { get { return name; } }
+    public string Name { get { return _name; } }
 
     public string GetAddressString()
     {
         //Get a formatted string representation of the customer's address
-        return address.ToString();
+        return _address.ToString();
     }
 }
 
 public class Address
 {
-    private string streetAddress;
-    private string city;
-    private string state;
-    private string country;
+    private string _streetAddress;
+    private string _city;
+    private string _state;
+    private string _country;
 
     public Address(string streetAddress, string city, string state, string country)
     {
-        this.streetAddress = streetAddress;
-        this.city = city;
-        this.state = state;
-        this.country = country;
+        this._streetAddress = streetAddress;
+        this._city = city;
+        this._state = state;
+        this._country = country;
     }
 
     public bool IsUsaAddress()
     {
         // Check if the address is in the USA
-        return country == "USA";
+        return _country == "USA";
     }
 
     public override string ToString()
     {
         // Get a formatted string representation of the address
-        return $"{streetAddress}, {city}, {state}, {country}";
+        return $"{_streetAddress}, {_city}, {_state}, {_country}";
     }
 }
