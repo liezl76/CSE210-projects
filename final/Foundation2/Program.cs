@@ -33,7 +33,7 @@ class Program
         Console.WriteLine("\nOrder 2:");
         DisplayOrderDetails(order2);
     }
-    static void DisplayOrderDetails(Order order)
+    public static void DisplayOrderDetails(Order order)
     {
         Console.WriteLine("Packing Label:");
         Console.WriteLine(order.GetPackingLabel());

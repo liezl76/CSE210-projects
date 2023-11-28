@@ -10,10 +10,10 @@ public class Product
 
     public Product(string name, string productId, decimal price, int quantity)
     {
-        this._name = name;
-        this._productId = productId;
-        this._price = price;
-        this._quantity = quantity;
+        _name = name;
+        _productId = productId;
+        _price = price;
+        _quantity = quantity;
     }
 
     public decimal GetTotalPrice()

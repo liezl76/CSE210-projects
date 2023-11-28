@@ -9,7 +9,7 @@ public class Order
     public Order(Customer customer)
     {
         this.customer = customer;
-        this.products = new List<Product>();
+        products = new List<Product>();
     }
 
     public void AddProduct(Product product)
@@ -21,6 +21,7 @@ public class Order
     public decimal GetTotalPrice()
     {
         decimal totalPrice = 0;
+        
         foreach (var product in products)
         {
             totalPrice += product.GetTotalPrice();
@@ -38,10 +39,12 @@ public class Order
     public string GetPackingLabel()
     {
         string label = "";
+        
         foreach (var product in products)
         {
             label += $"Name: {product.Name}, Product ID: {product.ProductId}\n";
         }
+        
         return label;
     }
 
