@@ -5,14 +5,14 @@ public class Video
 {
     public string _title { get; set; }
     public string _author { get; set; }
-    public int _length { get; set; }
+    public int _lengthSec { get; set; }
     public List<Comment> comments;
 
-    public Video(string title, string author, int length)
+    public Video(string title, string author, int lengthSec)
     {
         _title = title;
         _author = author;
-        _length = length;
+        _lengthSec = lengthSec;
         comments = new List<Comment>();
     }
 
@@ -31,7 +31,7 @@ public class Video
     {
         Console.WriteLine($"Title: {_title}");
         Console.WriteLine($"Author: {_author}");
-        Console.WriteLine($"Length: {_length} seconds");
+        Console.WriteLine($"Length: {_lengthSec} seconds");
         Console.WriteLine($"Number of Comments: {GetNumberOfComments()}");
         Console.WriteLine("Comments:");
         
