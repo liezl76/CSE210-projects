@@ -10,10 +10,10 @@ public class Address
 
     public Address(string streetAddress, string city, string state, string country)
     {
-        this._streetAddress = streetAddress;
-        this._city = city;
-        this._state = state;
-        this._country = country;
+        _streetAddress = streetAddress;
+        _city = city;
+        _state = state;
+        _country = country;
     }
 
     public bool IsUsaAddress()
