@@ -29,6 +29,7 @@ public class Video
 
     public void DisplayVideoDetails()
     {
+        Console.WriteLine();
         Console.WriteLine($"Title: {_title}");
         Console.WriteLine($"Author: {_author}");
         Console.WriteLine($"Length: {_lengthSec} seconds");
