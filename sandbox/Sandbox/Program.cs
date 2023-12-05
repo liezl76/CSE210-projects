@@ -1,148 +1,129 @@
 using System;
 using System.Collections.Generic;
 
-public class Event
+class Activity
 {
-    private string _title;
-    private string _description;
     private DateTime date;
-    private TimeSpan time;
-    private Address _address;
+    private int _lengthInMinutes;
 
-    public Event(string title, string description, DateTime date, TimeSpan time, Address address)
+    public Activity(DateTime date, int lengthInMinutes)
     {
-        _title = title;
-        _description = description;
         this.date = date;
-        this.time = time;
-        _address = address;
+        _lengthInMinutes = lengthInMinutes;
     }
 
-    public string GetStandardDetails()
+    public virtual double GetDistance()
     {
-        return $"Event: {_title}\nDescription: {_description}\nDate: {date.ToShortDateString()}\nTime: {time.ToString(@"hh\:mm")}\nAddress: {_address.GetFullAddress()}";
+        return 0; // Default implementation (override in derived classes)
     }
 
-    public virtual string GetFullDetails()
+    public virtual double GetSpeed()
     {
-        return GetStandardDetails();
+        return 0; // Default implementation (override in derived classes)
     }
 
-    public string GetShortDescription()
+    public virtual double GetPace()
     {
-        return $"Type: {GetType().Name}\nTitle: {_title}\nDate: {date.ToShortDateString()}";
+        return 0; // Default implementation (override in derived classes)
     }
+
+    public string GetSummary()
+    {
+        return $"{date.ToShortDateString()} - {GetType().Name} ({_lengthInMinutes} min): {GetDistance()} miles, Speed {GetSpeed()} mph, Pace {GetPace()} min per mile";
+    }
+
+    public int lengthInMinutes { get { return _lengthInMinutes;} }
 }
 
-public class Lecture : Event
+class Running : Activity
 {
-    private string speaker;
-    private int capacity;
+    private double distance;
 
-    public Lecture(string title, string description, DateTime date, TimeSpan time, Address address, string speaker, int capacity)
-        : base(title, description, date, time, address)
+    public Running(DateTime date, int lengthInMinutes, double distance)
+        : base(date, lengthInMinutes)
     {
-        this.speaker = speaker;
-        this.capacity = capacity;
+        this.distance = distance;
     }
 
-    public override string GetFullDetails()
+    public override double GetDistance()
     {
-        return $"{base.GetFullDetails()}\nType: Lecture\nSpeaker: {speaker}\nCapacity: {capacity}";
+        return distance;
+    }
+
+    public override double GetSpeed()
+    {
+        return distance / lengthInMinutes * 60;
+    }
+
+    public override double GetPace()
+    {
+        return lengthInMinutes / distance;
     }
 }
 
-public class Reception : Event
+class StationaryBicycle : Activity
 {
-    private string rsvpEmail;
+    private double speed;
 
-    public Reception(string title, string description, DateTime date, TimeSpan time, Address address, string rsvpEmail)
-        : base(title, description, date, time, address)
+    public StationaryBicycle(DateTime date, int lengthInMinutes, double speed)
+        : base(date, lengthInMinutes)
     {
-        this.rsvpEmail = rsvpEmail;
+        this.speed = speed;
     }
 
-    public override string GetFullDetails()
+    public override double GetDistance()
     {
-        return $"{base.GetFullDetails()}\nType: Reception\nRSVP Email: {rsvpEmail}";
+        return speed * lengthInMinutes / 60;
+    }
+
+    public override double GetSpeed()
+    {
+        return speed;
+    }
+
+    public override double GetPace()
+    {
+        return 60 / speed;
     }
 }
 
-public class OutdoorGathering : Event
+class LapSwimming : Activity
 {
-    private string weatherStatement;
+    private int laps;
 
-    public OutdoorGathering(string title, string description, DateTime date, TimeSpan time, Address address, string weatherStatement)
-        : base(title, description, date, time, address)
+    public LapSwimming(DateTime date, int lengthInMinutes, int laps)
+        : base(date, lengthInMinutes)
     {
-        this.weatherStatement = weatherStatement;
+        this.laps = laps;
     }
 
-    public override string GetFullDetails()
+    public override double GetDistance()
     {
-        return $"{base.GetFullDetails()}\nType: Outdoor Gathering\nWeather: {weatherStatement}";
-    }
-}
-
-public class Address
-{
-    private string _streetAddress;
-    private string _city;
-    private string _stateProvince;
-    private string _country;
-
-    public Address(string streetAddress, string city, string stateProvince, string country)
-    {
-        _streetAddress = streetAddress;
-        _city = city;
-        _stateProvince = stateProvince;
-        _country = country;
+        return laps * 50 / 1000; // Convert meters to kilometers
     }
 
-    public string GetFullAddress()
+    public override double GetSpeed()
     {
-        return $"{_streetAddress}, {_city}, {_stateProvince}, {_country}";
+        return GetDistance() / lengthInMinutes * 60;
+    }
+
+    public override double GetPace()
+    {
+        return lengthInMinutes / GetDistance();
     }
 }
-
 public class Program
 {
     static void Main(string[] args)
     {
-        // Create addresses
-        Address address1 = new Address("127 Ongpin St", "Manila", "MNL", "Phillippines");
-        Address address2 = new Address("Jose Rizal St", "Quezon", "MNL", "Phillippines");
-        Address address3 = new Address("Tan Tock Seng St", "Singapore", "SG", "Singapore");
+        // Create activities
+        Running runningActivity = new Running(new DateTime(2022, 11, 3), 30, 3.0);
+        StationaryBicycle bicycleActivity = new StationaryBicycle(new DateTime(2022, 11, 5), 30, 20.0);
+        LapSwimming swimmingActivity = new LapSwimming(new DateTime(2022, 11, 10), 30, 10);
 
-        // Create events
-        Event event1 = new Event("Tech Talk", "Career Boost With Power BI", new DateTime(2023, 12, 1), new TimeSpan(18, 30, 0), address1);
-        Lecture lecture1 = new Lecture("Cloud Computing Workshop", "AwSome Day Conference", new DateTime(2023, 11, 16), new TimeSpan(15, 0, 0), address2, "Dr. Smith", 50);
-        Reception reception1 = new Reception("Networking Night", "Connect with IT professionals", new DateTime(2023, 12, 10), new TimeSpan(19, 0, 0), address3, "rsvp@example.com");
-        OutdoorGathering gathering1 = new OutdoorGathering("A Day with the Techy", "Enjoy a Tech Day", new DateTime(2023, 12, 15), new TimeSpan(12, 0, 0), address1, "Sunny skies expected");
-
-        // Display marketing messages
-        Console.WriteLine("\nEvent 1 Marketing Messages:");
-        Console.WriteLine(event1.GetStandardDetails());
-        Console.WriteLine(event1.GetFullDetails());
-        Console.WriteLine(event1.GetShortDescription());
-        Console.WriteLine();
-
-        Console.WriteLine("Lecture 1 Marketing Messages:");
-        Console.WriteLine(lecture1.GetStandardDetails());
-        Console.WriteLine(lecture1.GetFullDetails());
-        Console.WriteLine(lecture1.GetShortDescription());
-        Console.WriteLine();
-
-        Console.WriteLine("Reception 1 Marketing Messages:");
-        Console.WriteLine(reception1.GetStandardDetails());
-        Console.WriteLine(reception1.GetFullDetails());
-        Console.WriteLine(reception1.GetShortDescription());
-        Console.WriteLine();
-
-        Console.WriteLine("Outdoor Gathering 1 Marketing Messages:");
-        Console.WriteLine(gathering1.GetStandardDetails());
-        Console.WriteLine(gathering1.GetFullDetails());
-        Console.WriteLine(gathering1.GetShortDescription());
-        Console.WriteLine();
+        // Display summary for each activity
+        Console.WriteLine(runningActivity.GetSummary());
+        Console.WriteLine(bicycleActivity.GetSummary());
+        Console.WriteLine(swimmingActivity.GetSummary());
     }
 }
