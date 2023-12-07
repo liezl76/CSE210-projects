@@ -5,6 +5,7 @@ class Activity
 {
     private DateTime date;
     private int _lengthInMinutes;
+    public int lengthInMinutes { get { return _lengthInMinutes;} }
 
     public Activity(DateTime date, int lengthInMinutes)
     {
@@ -32,5 +33,4 @@ class Activity
         return $"{date.ToShortDateString()} - {GetType().Name} ({_lengthInMinutes} min): {GetDistance()} miles, Speed {GetSpeed()} mph, Pace {GetPace()} min per mile";
     }
 
-    public int lengthInMinutes { get { return _lengthInMinutes;} }
 }
