@@ -4,109 +4,94 @@ using System.IO;
 
 public class Journal
 {
-    public List<Entry> entries = new List<Entry>(); //make a list of entries
-    public string[] _questions = { //make a list of random questions to prompt in writing in case 1
-        "Who was the most interesting person I interacted with today?",
-        "If I had one thing that I could do over today, what would it be?",
-        "What was the best part of the day?",
-        "How did I see the hand of the Lord in my life today?",
-        "What was the strongest emotion I felt today?",
-        "Where have you've been today?",
-        "What's the significant things you did today?"
-    };
-    public string _userMood = PromptUserMood();
-    public void MenuDisplay() //function to display menu
+    private List<Entry> entries = new List<Entry>();
+    public void WriteNewEntry()
     {
-        bool isRunning = true; //make a loop by using isRunning variable
-        while (isRunning)
+        Console.WriteLine("Selecting a random prompt...");
+        string randomPrompt = GetRandomPrompt();
+        Console.WriteLine($"Prompt: {randomPrompt}");
+
+        Console.Write("Response: ");
+        string response = Console.ReadLine();
+
+        string date = DateTime.Now.ToString("yyyy-MM-dd");
+
+        Entry newEntry = new Entry(randomPrompt, response, date);
+        entries.Add(newEntry);
+
+        Console.WriteLine("Entry saved successfully!\n");
+    }
+
+    public void DisplayJournal()
+    {
+        Console.WriteLine("Journal Entries:\n");
+        foreach (var entry in entries)
         {
-            Console.WriteLine("\nPlease select one of the following: ");//prompt question and make a choice what youre going to do
-            Console.WriteLine("1. Write");
-            Console.WriteLine("2. Display");
-            Console.WriteLine("3. Load");
-            Console.WriteLine("4. Save");
-            Console.WriteLine("5. Quit");
-            Console.WriteLine();
-            Console.WriteLine("What would you like to do? ");
-            int choice = Int32.Parse(Console.ReadLine());//input choice
+            Console.WriteLine($"Date: {entry._date}");
+            Console.WriteLine($"Prompt: {entry._prompt}");
+            Console.WriteLine($"Response: {entry._response}\n");
+        }
+    }
 
-            switch(choice) // I did use switch coz it simplier 
+    public void SaveJournalToFile()
+    {
+        Console.Write("Enter the filename to save the journal: ");
+        string journal = Console.ReadLine();
+
+        using (StreamWriter sw = new StreamWriter(journal))
+        {
+            foreach (var entry in entries)
             {
-                case 1:
-                    Random rnd = new Random();
-                    int num_question = rnd.Next(0, 6);
-                    string selected_question = _questions[num_question];
-                    Console.WriteLine(selected_question);
-                    string answer = Console.ReadLine();
-                    entries.Add(new Entry(selected_question));
-                    entries.Add(new Entry(answer));
-                    entries.Add(new Entry(_userMood));
-                    break;
+                sw.WriteLine($"{entry._date}|{entry._prompt}|{entry._response}");
+            }
+        }
 
-                case 2:
-                    foreach(Entry ent in entries)
+        Console.WriteLine($"Journal saved to {journal} successfully!\n");
+    }
+
+    public void LoadJournalFromFile()
+    {
+        Console.Write("Enter the filename to load the journal: ");
+        string journal = Console.ReadLine();
+
+        if (File.Exists(journal))
+        {
+            entries.Clear();
+
+            using (StreamReader sr = new StreamReader(journal))
+            {
+                while (!sr.EndOfStream)
+                {
+                    string[] parts = sr.ReadLine().Split('|');
+                    if (parts.Length == 3)
                     {
-                        Console.WriteLine("Date: " + ent.getDateTime() + " : " + ent.getEntry());
+                        Entry loadedEntry = new Entry(parts[1], parts[2], parts[0]);
+                        entries.Add(loadedEntry);
                     }
-                    break;
-
-                case 3:
-                    ReadFromFile();
-                    break;
-
-                case 4:
-                    SaveToFile();
-                    break;
-                    
-                case 5:
-                    isRunning = false;
-                    break;
-
-                default:
-                    Console.WriteLine("Invalid choice. Please try again.");
-                    break;
+                }
             }
-        }
-    }
-    public void DisplayWelcomeMessage()
-    {
-        Console.WriteLine("\nWelcome to the program!");
-    }
-    public void SaveToFile()
-    {
-        Console.WriteLine("Saving the file...");
-        string file = "journal.txt";
 
-        using (StreamWriter outputFile = new StreamWriter(file))
+            Console.WriteLine($"Journal loaded from {journal} successfully!\n");
+        }
+        else
         {
-            foreach (Entry ent in entries)
-            {
-                outputFile.WriteLine("Date: " + ent.getDateTime() + " : " + ent.getEntry());
-            }
+            Console.WriteLine($"File {journal} not found.\n");
         }
     }
-    public void ReadFromFile()
+
+    private string GetRandomPrompt()
     {
-        Console.WriteLine("Loading from the file...");
-        List<Entry> entry = new List<Entry>();
-        string filename = "journal.txt";
+        List<string> prompts = new List<string>
+        {
+            "Who was the most interesting person I interacted with today?",
+            "What was the best part of my day?",
+            "How did I see the hand of the Lord in my life today?",
+            "What was the strongest emotion I felt today?",
+            "If I had one thing I could do over today, what would it be?"
+        };
 
-        string[] lines = System.IO.File.ReadAllLines(filename);
-
-            foreach (Entry ent in entries)
-            {
-                Console.WriteLine("Date: " + ent.getDateTime() + " : " + ent.getEntry());
-                Console.ReadLine();
-            }
-    }
-    public static string PromptUserMood()
-    {
-        Console.ForegroundColor = ConsoleColor.Black;
-        Console.Clear();
-        Console.BackgroundColor = ConsoleColor.White;
-        Console.Write("How do yo feel now? ");
-        string _userMood = Console.ReadLine();
-
-        return _userMood;
+        Random random = new Random();
+        int index = random.Next(prompts.Count);
+        return prompts[index];
     }
 }

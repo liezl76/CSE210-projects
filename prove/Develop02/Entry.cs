@@ -4,20 +4,14 @@ using System.Text;
 
 public class Entry
 {
-    private string _entry;
-    private DateTime date = DateTime.Now;
+    public string _prompt {get; set;}
+    public string _response {get; set;}
+    public string _date {get; set;}
 
-    public Entry(string answer)
+    public Entry(string prompt, string response, string date)
     {
-        this._entry = answer;
-    }
-
-    public DateTime getDateTime()//method to get date
-    {
-       return this.date;
-    }
-    public string getEntry()//method to get entry
-    {
-        return this._entry;
+        _prompt = prompt;
+        _response = response;
+        _date = date;
     }
 }
