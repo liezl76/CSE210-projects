@@ -7,7 +7,7 @@ public class Journal
     private List<Entry> entries = new List<Entry>();
     public void WriteNewEntry()
     {
-        Console.WriteLine("Selecting a random prompt...");
+        Console.WriteLine();                                                                                                                              
         string randomPrompt = GetRandomPrompt();
         Console.WriteLine($"Prompt: {randomPrompt}");
 
@@ -36,9 +36,9 @@ public class Journal
     public void SaveJournalToFile()
     {
         Console.Write("Enter the filename to save the journal: ");
-        string journal = Console.ReadLine();
+        string filename = Console.ReadLine();
 
-        using (StreamWriter sw = new StreamWriter(journal))
+        using (StreamWriter sw = new StreamWriter(filename))
         {
             foreach (var entry in entries)
             {
@@ -46,19 +46,19 @@ public class Journal
             }
         }
 
-        Console.WriteLine($"Journal saved to {journal} successfully!\n");
+        Console.WriteLine($"Journal saved to {filename} successfully!\n");
     }
 
     public void LoadJournalFromFile()
     {
         Console.Write("Enter the filename to load the journal: ");
-        string journal = Console.ReadLine();
+        string filename = Console.ReadLine();
 
-        if (File.Exists(journal))
+        if (File.Exists(filename))
         {
             entries.Clear();
 
-            using (StreamReader sr = new StreamReader(journal))
+            using (StreamReader sr = new StreamReader(filename))
             {
                 while (!sr.EndOfStream)
                 {
@@ -71,11 +71,11 @@ public class Journal
                 }
             }
 
-            Console.WriteLine($"Journal loaded from {journal} successfully!\n");
+            Console.WriteLine($"Journal loaded from {filename} successfully!\n");
         }
         else
         {
-            Console.WriteLine($"File {journal} not found.\n");
+            Console.WriteLine($"File {filename} not found.\n");
         }
     }
 
