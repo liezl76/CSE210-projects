@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 public class Lecture : Event
 {
     private string _speaker;
