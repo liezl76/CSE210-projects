@@ -120,16 +120,14 @@ public class ListingActivity : Activity
         Console.Write("Enter the duration (in seconds): ");
         _duration = Convert.ToInt32(Console.ReadLine());
 
-        Random random = new Random();
+        DateTime startTime = DateTime.Now;
 
-        int elapsedTime = 0;
-
-        while (elapsedTime < _duration)
+        while ((DateTime.Now - startTime).TotalSeconds < _duration)
         {
+            Random random = new Random();
             string prompt = _prompts[random.Next(_prompts.Count)];
             Console.WriteLine($"Prompt: {prompt}");
             AnimateBouncingBall();
-            elapsedTime += 2;
 
             Console.WriteLine("Start Listing Items:");
 
@@ -145,9 +143,10 @@ public class ListingActivity : Activity
             }
             Console.WriteLine($"Total items listed: {count}");
             AnimateBouncingBall();
-            elapsedTime += 2;
         }
+        Console.WriteLine("Activity completed!");
     }
+
     private void AnimateBouncingBall()
     {
         int left = Console.CursorLeft;
