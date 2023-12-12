@@ -38,7 +38,7 @@ public class Journal
         Console.Write("Enter the filename to save the journal: ");
         string filename = Console.ReadLine();
 
-        using (StreamWriter sw = new StreamWriter(filename))
+        using (StreamWriter sw = new StreamWriter(filename, true))
         {
             foreach (var entry in entries)
             {
