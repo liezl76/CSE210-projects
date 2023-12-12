@@ -14,9 +14,12 @@ public class Journal
         Console.Write("Response: ");
         string response = Console.ReadLine();
 
+        Console.Write("Location: ");
+        string location = Console.ReadLine();
+
         string date = DateTime.Now.ToString("yyyy-MM-dd");
 
-        Entry newEntry = new Entry(randomPrompt, response, date);
+        Entry newEntry = new Entry(randomPrompt, response, location, date);
         entries.Add(newEntry);
 
         Console.WriteLine("Entry saved successfully!\n");
@@ -30,6 +33,7 @@ public class Journal
             Console.WriteLine($"Date: {entry._date}");
             Console.WriteLine($"Prompt: {entry._prompt}");
             Console.WriteLine($"Response: {entry._response}\n");
+            Console.WriteLine($"Prompt: {entry._location}");
         }
     }
 
@@ -42,11 +46,11 @@ public class Journal
         {
             foreach (var entry in entries)
             {
-                sw.WriteLine($"{entry._date}|{entry._prompt}|{entry._response}");
+                sw.WriteLine($"{entry._date}|{entry._prompt}|{entry._response}|{entry._location}");
             }
         }
 
-        Console.WriteLine($"Journal saved to {filename} successfully!\n");
+        Console.WriteLine($"Journal saved to {filename} successfully!");
     }
 
     public void LoadJournalFromFile()
@@ -65,13 +69,13 @@ public class Journal
                     string[] parts = sr.ReadLine().Split('|');
                     if (parts.Length == 3)
                     {
-                        Entry loadedEntry = new Entry(parts[1], parts[2], parts[0]);
+                        Entry loadedEntry = new Entry(parts[1], parts[2], parts[3], parts[0]);
                         entries.Add(loadedEntry);
                     }
                 }
             }
 
-            Console.WriteLine($"Journal loaded from {filename} successfully!\n");
+            Console.WriteLine($"Journal loaded from {filename} successfully!");
         }
         else
         {
