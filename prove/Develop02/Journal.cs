@@ -32,8 +32,8 @@ public class Journal
         {
             Console.WriteLine($"Date: {entry._date}");
             Console.WriteLine($"Prompt: {entry._prompt}");
-            Console.WriteLine($"Response: {entry._response}\n");
-            Console.WriteLine($"Prompt: {entry._location}");
+            Console.WriteLine($"Response: {entry._response}");
+            Console.WriteLine($"Location: {entry._location}");
         }
     }
 
@@ -49,7 +49,6 @@ public class Journal
                 sw.WriteLine($"{entry._date}|{entry._prompt}|{entry._response}|{entry._location}");
             }
         }
-
         Console.WriteLine($"Journal saved to {filename} successfully!");
     }
 
@@ -67,7 +66,7 @@ public class Journal
                 while (!sr.EndOfStream)
                 {
                     string[] parts = sr.ReadLine().Split('|');
-                    if (parts.Length == 3)
+                    if (parts.Length == 4)
                     {
                         Entry loadedEntry = new Entry(parts[1], parts[2], parts[3], parts[0]);
                         entries.Add(loadedEntry);
